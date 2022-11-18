@@ -1,0 +1,5 @@
+#Fri Nov 18 16:10:29 CET 2022
+configuration*?=7990730655257D1FFC21B1ECDAF341B53DFE34B1
+module-resource*?\:checkstyle-xpath-suppressions.xml=937E38A68E3142DBDE438DBE61402D1C032DB424
+/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/Application.java=1668780942696
+module-resource*?\:checkstyle-suppressions.xml=262CD7D2042DD1317703F1E3119AA6A10ECF9ABC
