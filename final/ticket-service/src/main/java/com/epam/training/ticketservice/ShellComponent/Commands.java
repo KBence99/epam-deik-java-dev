@@ -26,7 +26,7 @@ public class Commands {
         return "Signing out";
     }
 
-    @ShellMethod(value = "Desciption of account", key = "describe account")
+    @ShellMethod(value = "Description of account", key = "describe account")
     public String describe(){
         return account.Describe();
     }

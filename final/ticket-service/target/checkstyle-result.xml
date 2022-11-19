@@ -15,9 +15,6 @@
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/Account/AccountType.java">
 <error line="1" column="9" severity="warning" message="Package name &apos;com.epam.training.ticketservice.Account&apos; must match pattern &apos;^[a-z]+(\.[a-z][a-z0-9]*)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck"/>
 </file>
-<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/Entities/MovieEntity.java">
-<error line="1" column="9" severity="warning" message="Package name &apos;com.epam.training.ticketservice.Entities&apos; must match pattern &apos;^[a-z]+(\.[a-z][a-z0-9]*)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck"/>
-</file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/Application.java">
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/ShellComponent/Commands.java">
@@ -28,5 +25,8 @@
 <error line="18" severity="warning" message="&apos;else&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
 <error line="24" column="26" severity="warning" message="WhitespaceAround: &apos;{&apos; is not preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
 <error line="30" column="29" severity="warning" message="WhitespaceAround: &apos;{&apos; is not preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+</file>
+<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/ShellComponent/CustomPromptProvider.java">
+<error line="1" column="9" severity="warning" message="Package name &apos;com.epam.training.ticketservice.ShellComponent&apos; must match pattern &apos;^[a-z]+(\.[a-z][a-z0-9]*)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck"/>
 </file>
 </checkstyle>

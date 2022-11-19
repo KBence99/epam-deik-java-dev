@@ -20,7 +20,7 @@ public class Account {
 
     public String Describe(){
         if(getType().equals(AccountType.ADMIN)){
-            return String.format("Signed in with privileged account %s",accountName);
+            return String.format("Signed in with privileged account '%s'",accountName);
         }
         else {
             return "You are not signed in";
