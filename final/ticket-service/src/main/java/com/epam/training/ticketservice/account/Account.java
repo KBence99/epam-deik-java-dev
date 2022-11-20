@@ -1,4 +1,4 @@
-package com.epam.training.ticketservice.Account;
+package com.epam.training.ticketservice.account;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
@@ -10,20 +10,25 @@ public class Account {
     private AccountType type = AccountType.NOT_LOGGED_IN;
     private String accountName = "admin";
 
-    public void LogIn(){
+    public static final String unathorized = "Unauthorized for this command";
+
+    public void logIn() {
         setType(AccountType.ADMIN);
     }
 
-    public void LogOut(){
+    public void logOut() {
         setType(AccountType.NOT_LOGGED_IN);
     }
 
-    public String Describe(){
-        if(getType().equals(AccountType.ADMIN)){
+    public String describe() {
+        if (getType().equals(AccountType.ADMIN)) {
             return String.format("Signed in with privileged account '%s'",accountName);
-        }
-        else {
+        } else {
             return "You are not signed in";
         }
+    }
+
+    public Boolean isLoggedIn() {
+        return getType().equals(AccountType.ADMIN);
     }
 }

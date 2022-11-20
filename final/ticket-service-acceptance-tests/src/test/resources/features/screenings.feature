@@ -21,7 +21,7 @@ Feature: allows creating, deleting and listing screenings
   @grade2-requirement
   Scenario: The admin can not create overlapping screenings in the same room
     Given the user types the "sign in privileged admin admin" command
-    And the user types the "create screening Sátántangó Pedersoli \"2021-03-15 10:45\"" command
+      And the user types the "create screening Sátántangó Pedersoli \"2021-03-15 10:45\"" command
     When the user types the "create screening \"Spirited Away\" Pedersoli \"2021-03-15 10:50\"" command
     Then the next line of the output is "There is an overlapping screening"
     When the user types the "list screenings" command
