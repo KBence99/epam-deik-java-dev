@@ -1,6 +1,6 @@
 package com.epam.training.ticketservice.shellcomponent;
 
-import com.epam.training.ticketservice.account.Account;
+import com.epam.training.ticketservice.account.SignInHandler;
 import com.epam.training.ticketservice.entities.RoomEntity;
 
 import com.epam.training.ticketservice.services.RoomService;
@@ -14,12 +14,12 @@ import org.springframework.shell.standard.ShellMethod;
 @AllArgsConstructor
 public class RoomCommands {
 
-    private Account account;
+    private SignInHandler account;
     private RoomService roomService;
 
     @ShellMethod(value = "Creating a room", key = "create room")
     public void createRoom(String roomName, Integer chairRows, Integer chairColumns) {
-        if (!account.isLoggedIn()) {
+        if (!account.isAdmin()) {
             return;
         }
         RoomEntity room = new RoomEntity(null,roomName, chairRows, chairColumns);
@@ -28,7 +28,7 @@ public class RoomCommands {
 
     @ShellMethod(value = "Updating a room", key = "update room")
     public void updateRoom(String roomName, Integer chairRows, Integer chairColumns) {
-        if (!account.isLoggedIn()) {
+        if (!account.isAdmin()) {
             return;
         }
         RoomEntity room = new RoomEntity(null,roomName,chairRows,chairColumns); //TODO: Add database
@@ -37,7 +37,7 @@ public class RoomCommands {
 
     @ShellMethod(value = "Deleting a room", key = "delete room")
     public void deleteRoom(String roomName) {
-        if (!account.isLoggedIn()) {
+        if (!account.isAdmin()) {
             return;
         }
         roomService.deleteRoom(roomName);

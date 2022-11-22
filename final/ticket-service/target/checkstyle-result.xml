@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.29">
+<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/entities/UserEntity.java">
+</file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/entities/RoomEntity.java">
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/entities/ScreeningEntity.java">
+</file>
+<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/entities/BookEntity.java">
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/entities/MovieEntity.java">
 </file>
@@ -12,23 +16,35 @@
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/shellcomponent/ExitCommand.java">
 </file>
+<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/shellcomponent/UserCommands.java">
+</file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/shellcomponent/ScreeningCommands.java">
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/shellcomponent/MovieCommands.java">
 </file>
-<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/shellcomponent/AdminCommands.java">
+<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/shellcomponent/BookingCommands.java">
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/MovieService.java">
+</file>
+<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/UserService.java">
+</file>
+<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/BookService.java">
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/ScreeningService.java">
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/impl/RoomServiceImpl.java">
 </file>
+<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/impl/UserServiceImpl.java">
+</file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/impl/ScreeningServiceImpl.java">
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/impl/MovieServiceImpl.java">
 </file>
+<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/impl/BookServiceImpl.java">
+</file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/RoomService.java">
+</file>
+<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/repository/BookRepository.java">
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/repository/RoomRepository.java">
 </file>
@@ -36,13 +52,17 @@
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/repository/MovieRepository.java">
 </file>
+<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/repository/UserRepository.java">
+</file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/utility/DateParser.java">
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/Application.java">
 </file>
+<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/dtos/Seat.java">
+</file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/dtos/ScreeningDT.java">
 </file>
-<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/account/Account.java">
+<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/account/SignInHandler.java">
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/account/AccountType.java">
 </file>

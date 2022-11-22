@@ -9,21 +9,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
-
-import java.io.Serializable;
+import javax.persistence.Column;
 
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "MovieTable")
-public class MovieEntity implements Serializable {
+@Table(name = "AccountTable")
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private String genre;
-    private Integer lengthInMin;
+    @Column(unique = true)
+    String username;
+
+    String password;
 }

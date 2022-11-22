@@ -9,21 +9,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
-
-import java.io.Serializable;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "MovieTable")
-public class MovieEntity implements Serializable {
+@Table(name = "BookTable")
+public class BookEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private String genre;
-    private Integer lengthInMin;
+    @OneToOne()
+    @JoinColumn(name = "screeningId", referencedColumnName = "id")
+    private ScreeningEntity screening;
+
+    private String username;
+
+    private String seats;
 }

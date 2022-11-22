@@ -1,6 +1,6 @@
 package com.epam.training.ticketservice.shellcomponent;
 
-import com.epam.training.ticketservice.account.Account;
+import com.epam.training.ticketservice.account.SignInHandler;
 import com.epam.training.ticketservice.dtos.ScreeningDT;
 import com.epam.training.ticketservice.services.ScreeningService;
 import lombok.AllArgsConstructor;
@@ -11,12 +11,12 @@ import org.springframework.shell.standard.ShellMethod;
 @AllArgsConstructor
 public class ScreeningCommands {
 
-    private Account account;
+    private SignInHandler account;
     private ScreeningService screeningService;
 
     @ShellMethod(value = "Creating a room", key = "create screening")
     public void createScreening(String movieName, String roomName, String screeningStart) {
-        if (!account.isLoggedIn()) {
+        if (!account.isAdmin()) {
             return;
         }
         ScreeningDT dto = new ScreeningDT(movieName, roomName, screeningStart);
@@ -25,7 +25,7 @@ public class ScreeningCommands {
 
     @ShellMethod(value = "Deleting a room", key = "delete screening")
     public void deleteScreening(String movieName, String roomName, String screeningStart) {
-        if (!account.isLoggedIn()) {
+        if (!account.isAdmin()) {
             return;
         }
         ScreeningDT dto = new ScreeningDT(movieName, roomName, screeningStart);

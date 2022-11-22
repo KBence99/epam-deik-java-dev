@@ -11,13 +11,14 @@ import javax.persistence.Table;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "ScreeningTable")
-public class ScreeningEntity {
+public class ScreeningEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
