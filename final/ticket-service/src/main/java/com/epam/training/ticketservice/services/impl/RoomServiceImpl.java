@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.StringJoiner;
 
 @Component
 @Transactional
@@ -43,14 +44,14 @@ public class RoomServiceImpl implements RoomService {
             return "There are no rooms at the moment";
         }
 
-        StringBuilder list = new StringBuilder();
+        StringJoiner joiner = new StringJoiner("\n");
 
         for (RoomEntity room:rooms) {
-            list.append(String.format("Room %s with %d seats, %d rows and %d columns\n",
+            joiner.add(String.format("Room %s with %d seats, %d rows and %d columns",
                     room.getName(),room.getChairRows() * room.getChairColumns(),
                     room.getChairRows(), room.getChairColumns()));
         }
 
-        return list.toString().trim();
+        return joiner.toString();
     }
 }

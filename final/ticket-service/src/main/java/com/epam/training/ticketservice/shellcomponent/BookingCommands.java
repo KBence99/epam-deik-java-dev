@@ -1,6 +1,6 @@
 package com.epam.training.ticketservice.shellcomponent;
 
-import com.epam.training.ticketservice.account.SignInHandler;
+import com.epam.training.ticketservice.account.UserHandler;
 import com.epam.training.ticketservice.dtos.ScreeningDT;
 import com.epam.training.ticketservice.services.BookService;
 import lombok.AllArgsConstructor;
@@ -11,12 +11,14 @@ import org.springframework.shell.standard.ShellMethod;
 @AllArgsConstructor
 public class BookingCommands {
 
-    SignInHandler signInHandler;
+    UserHandler signInHandler;
     BookService bookService;
 
     @ShellMethod(value = "Book", key = "book")
     public void book(String movieName, String roomName, String screeningStart, String seats) {
-        bookService.book(new ScreeningDT(movieName, roomName, screeningStart),signInHandler.getUserName(), seats);
+        if (signInHandler.isLoggedIn()) {
+            bookService.book(new ScreeningDT(movieName, roomName, screeningStart),signInHandler.getUserName(), seats);
+        }
     }
 
 }

@@ -5,12 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -26,4 +30,14 @@ public class MovieEntity implements Serializable {
     private String title;
     private String genre;
     private Integer lengthInMin;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<PriceComponentEntity> prices = new ArrayList<>();
+
+    public MovieEntity(Long id, String title, String genre, Integer lengthInMin) {
+        this.id = id;
+        this.title = title;
+        this.genre = genre;
+        this.lengthInMin = lengthInMin;
+    }
 }

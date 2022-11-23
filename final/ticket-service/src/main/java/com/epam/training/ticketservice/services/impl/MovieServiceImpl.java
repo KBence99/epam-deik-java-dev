@@ -4,11 +4,11 @@ import com.epam.training.ticketservice.entities.MovieEntity;
 import com.epam.training.ticketservice.repository.MovieRepository;
 import com.epam.training.ticketservice.services.MovieService;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.StringJoiner;
 
 @Component
 @AllArgsConstructor
@@ -42,13 +42,13 @@ public class MovieServiceImpl implements MovieService {
             return "There are no movies at the moment";
         }
 
-        StringBuilder list = new StringBuilder();
+        StringJoiner joiner = new StringJoiner("\n");
 
         for (MovieEntity movie:movies) {
-            list.append(String.format("%s (%s, %d minutes)",
+            joiner.add(String.format("%s (%s, %d minutes)",
                     movie.getTitle(), movie.getGenre(), movie.getLengthInMin()));
         }
 
-        return list.toString().trim();
+        return joiner.toString();
     }
 }

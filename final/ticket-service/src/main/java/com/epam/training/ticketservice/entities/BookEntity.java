@@ -13,7 +13,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "BookTable")
@@ -30,4 +29,13 @@ public class BookEntity {
     private String username;
 
     private String seats;
+
+    private int price;
+
+    public BookEntity(Long id, ScreeningEntity screening, String username, String seats) {
+        this.id = id;
+        this.screening = screening;
+        this.username = username;
+        this.seats = seats;
+    }
 }

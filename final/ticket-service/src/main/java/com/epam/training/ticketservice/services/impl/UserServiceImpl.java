@@ -22,9 +22,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean signUp(String username, String password) {
+    public void signUp(String username, String password) {
         UserEntity user = new UserEntity(null,username,password);
         repository.save(user);
-        return true;
     }
 }

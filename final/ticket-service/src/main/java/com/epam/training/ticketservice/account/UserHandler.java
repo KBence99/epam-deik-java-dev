@@ -8,11 +8,10 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-public class SignInHandler {
+public class UserHandler {
 
     @Autowired
     private UserService userService;
-
     @Autowired
     private BookService bookService;
 
@@ -22,11 +21,8 @@ public class SignInHandler {
 
     public static final String unauthorized = "Unauthorized for this command";
 
-    public Boolean signUp(String username, String password) {
-        if (userService.signUp(username,password)) {
-            return true;
-        }
-        return false;
+    public void signUp(String username, String password) {
+        userService.signUp(username,password);
     }
 
     public void logInAdmin(String username, String password) {
@@ -48,6 +44,7 @@ public class SignInHandler {
     }
 
     public void logOut() {
+        setUserName("");
         setType(AccountType.NOT_LOGGED_IN);
     }
 
@@ -70,5 +67,9 @@ public class SignInHandler {
 
     public Boolean isAdmin() {
         return getType().equals(AccountType.ADMIN);
+    }
+
+    public Boolean isLoggedIn() {
+        return getType().equals(AccountType.USER);
     }
 }

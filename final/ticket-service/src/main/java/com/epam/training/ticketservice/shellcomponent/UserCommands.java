@@ -1,6 +1,6 @@
 package com.epam.training.ticketservice.shellcomponent;
 
-import com.epam.training.ticketservice.account.SignInHandler;
+import com.epam.training.ticketservice.account.UserHandler;
 import lombok.AllArgsConstructor;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -9,7 +9,7 @@ import org.springframework.shell.standard.ShellMethod;
 @AllArgsConstructor
 public class UserCommands {
 
-    private SignInHandler handler;
+    private UserHandler handler;
 
     @ShellMethod(value = "Signs in admin",key = "sign in privileged")
     public void loginAdmin(String username, String password) {
@@ -27,9 +27,9 @@ public class UserCommands {
     }
 
     @ShellMethod(value = "Signs out",key = "sign out")
-    public String login() {
+    public void logout() {
         handler.logOut();
-        return "Signing out";
+        System.out.println("Signing out");
     }
 
     @ShellMethod(value = "Description of account", key = "describe account")

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="24" failures="0" name="com.training.epam.ticketservice.at.TestExecutor" time="236.163" errors="0" skipped="0">
+<testsuite tests="30" failures="0" name="com.training.epam.ticketservice.at.TestExecutor" time="312.721" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.17+8-post-Ubuntu-1ubuntu220.04"/>
@@ -43,7 +43,7 @@
     <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
     <property name="java.vm.specification.version" value="11"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean verify -P requirements-grade4"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean verify -P requirements-grade5"/>
     <property name="java.home" value="/usr/lib/jvm/java-11-openjdk-amd64"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -61,28 +61,34 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="allow creating accounts and logging in" name="the admin account exists by default and can be logged in with the correct password" time="8.384"/>
-  <testcase classname="allow creating accounts and logging in" name="the admin account can be signed out" time="9.135"/>
-  <testcase classname="allow creating accounts and logging in" name="the admin account can not be logged in with incorrect password" time="8.77"/>
-  <testcase classname="allow creating accounts and logging in" name="non-privileged accounts can be created and logged in with the correct password" time="8.489"/>
-  <testcase classname="allow creating accounts and logging in" name="non-privileged accounts can not be logged in with the incorrect password" time="9.366"/>
-  <testcase classname="allow creating accounts and logging in" name="non-privileged accounts can be signed out" time="9.079"/>
-  <testcase classname="allows users to book tickets for screenings, and show booking history" name="an authenticated user can book a ticket for a screening" time="11.26"/>
-  <testcase classname="allows users to book tickets for screenings, and show booking history" name="an authenticated user can not book a ticket if at least one of the seats is already taken" time="12.16"/>
-  <testcase classname="allows creating movie descriptions" name="an admin user can create and list movies" time="10.974"/>
-  <testcase classname="allows creating movie descriptions" name="an admin user can update a movie" time="9.661"/>
-  <testcase classname="allows creating movie descriptions" name="an admin user can delete a movie" time="9.478"/>
-  <testcase classname="allows creating movie descriptions" name="an unauthenticated user can list movies" time="9.254"/>
-  <testcase classname="allows creating movie descriptions" name="an authenticated, non-privileged user can list movies" time="9.367"/>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can create and list rooms" time="9.15"/>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can update a room" time="9.336"/>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can delete a room" time="9.231"/>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an unauthenticated user can list rooms" time="9.411"/>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an authenticated, non-privileged user can list rooms" time="9.993"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can create and query screenings" time="10.742"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create overlapping screenings in the same room" time="10.76"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create overlapping screenings in different rooms" time="10.329"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create screenings during a 10 minute long breaks after another screening in the same room" time="10.484"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create screenings even if there is a break after a screening in a different room" time="10.623"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can delete screenings" time="10.727"/>
+  <testcase classname="allow creating accounts and logging in" name="the admin account exists by default and can be logged in with the correct password" time="9.028"/>
+  <testcase classname="allow creating accounts and logging in" name="the admin account can be signed out" time="8.837"/>
+  <testcase classname="allow creating accounts and logging in" name="the admin account can not be logged in with incorrect password" time="8.73"/>
+  <testcase classname="allow creating accounts and logging in" name="non-privileged accounts can be created and logged in with the correct password" time="9.291"/>
+  <testcase classname="allow creating accounts and logging in" name="non-privileged accounts can not be logged in with the incorrect password" time="9.67"/>
+  <testcase classname="allow creating accounts and logging in" name="non-privileged accounts can be signed out" time="9.286"/>
+  <testcase classname="allows users to book tickets for screenings, and show booking history" name="an authenticated user can book a ticket for a screening" time="11.364"/>
+  <testcase classname="allows users to book tickets for screenings, and show booking history" name="an authenticated user can not book a ticket if at least one of the seats is already taken" time="12.052"/>
+  <testcase classname="allows users to book tickets for screenings, and show booking history" name="the price of the ticket in the history should not change if pricing changes after the booking" time="12.707"/>
+  <testcase classname="allows creating movie descriptions" name="an admin user can create and list movies" time="9.032"/>
+  <testcase classname="allows creating movie descriptions" name="an admin user can update a movie" time="9.14"/>
+  <testcase classname="allows creating movie descriptions" name="an admin user can delete a movie" time="8.913"/>
+  <testcase classname="allows creating movie descriptions" name="an unauthenticated user can list movies" time="9.615"/>
+  <testcase classname="allows creating movie descriptions" name="an authenticated, non-privileged user can list movies" time="9.515"/>
+  <testcase classname="allows creating pricing components and assigning them to rooms, movies and screenings" name="a default per seat per screening price is defined to be 1500 HUF and is used in the calculation of the price of each seat" time="11.173"/>
+  <testcase classname="allows creating pricing components and assigning them to rooms, movies and screenings" name="the admin user can change the default per seat per screening price" time="11.545"/>
+  <testcase classname="allows creating pricing components and assigning them to rooms, movies and screenings" name="the admin user can create price component and assign it to a movie" time="12.632"/>
+  <testcase classname="allows creating pricing components and assigning them to rooms, movies and screenings" name="the admin user can create price component and assign it to a room" time="11.959"/>
+  <testcase classname="allows creating pricing components and assigning them to rooms, movies and screenings" name="the admin user can create price component and assign it to a screening" time="11.877"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can create and list rooms" time="8.884"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can update a room" time="9.236"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can delete a room" time="9.135"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an unauthenticated user can list rooms" time="9.928"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an authenticated, non-privileged user can list rooms" time="9.829"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can create and query screenings" time="11.005"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create overlapping screenings in the same room" time="10.905"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create overlapping screenings in different rooms" time="10.807"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create screenings during a 10 minute long breaks after another screening in the same room" time="10.987"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create screenings even if there is a break after a screening in a different room" time="13.473"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can delete screenings" time="12.166"/>
 </testsuite>
