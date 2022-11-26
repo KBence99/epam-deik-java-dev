@@ -12,6 +12,7 @@ import com.epam.training.ticketservice.repository.ScreeningRepository;
 import com.epam.training.ticketservice.services.PriceComponentService;
 import com.epam.training.ticketservice.utility.ScreeningTool;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @Slf4j
+@NoArgsConstructor
 public class PriceComponentServiceImpl implements PriceComponentService {
 
     private PriceComponentRepository priceRepository;

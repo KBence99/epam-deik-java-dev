@@ -1,23 +1,21 @@
 package com.epam.training.ticketservice.utility;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-@Slf4j
 public class DateParser {
 
     private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    public static Boolean isClashing(String movie, String newMovie, Integer duration, Integer newMovieDuration) {
-
+    public static Boolean isClashing(String movie, String newMovie,
+                                     Integer durationInMinutes, Integer newMovieDurationInMinutes) {
         try {
             LocalDateTime movieStart = LocalDateTime.parse(movie,format);
-            LocalDateTime movieEnd = movieStart.plusMinutes(duration);
+            LocalDateTime movieEnd = movieStart.plusMinutes(durationInMinutes);
 
             LocalDateTime newMovieStart = LocalDateTime.parse(newMovie,format);
-            LocalDateTime newMovieEnd = newMovieStart.plusMinutes(newMovieDuration);
+            LocalDateTime newMovieEnd = newMovieStart.plusMinutes(newMovieDurationInMinutes);
 
             if (isBetween(movieStart, movieEnd, newMovieStart)) {
                 return true;
@@ -28,36 +26,31 @@ public class DateParser {
                     return false;
                 }
             }
-        } catch (Exception e) {
-            return true;
+        } catch (DateTimeParseException e) {
+            throw e;
         }
     }
 
     public static Boolean isInBreak(String movie, String newMovie, Integer duration, Integer newMovieDuration) {
 
         try {
-            LocalDateTime movieStart = LocalDateTime.parse(movie,format);
+            LocalDateTime movieStart = LocalDateTime.parse(movie, format);
             LocalDateTime breakStart = movieStart.plusMinutes(duration);
             LocalDateTime breakEnds = breakStart.plusMinutes(10);
 
-            LocalDateTime newMovieStart = LocalDateTime.parse(newMovie,format);
-            LocalDateTime newMovieEnd = newMovieStart.plusMinutes(newMovieDuration);
+            LocalDateTime newMovieStart = LocalDateTime.parse(newMovie, format);
 
             if (isBetween(breakStart, breakEnds, newMovieStart)) {
                 return true;
             } else {
-                if (isBetween(breakStart, breakEnds, newMovieEnd)) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return false;
             }
-        } catch (Exception e) {
-            return true;
+        } catch (DateTimeParseException e) {
+            throw e;
         }
     }
 
-    private static boolean isBetween(LocalDateTime breakStart, LocalDateTime breakEnds, LocalDateTime newMovieStart) {
-        return newMovieStart.isAfter(breakStart) && newMovieStart.isBefore(breakEnds);
+    private static boolean isBetween(LocalDateTime start, LocalDateTime end, LocalDateTime newMovieStart) {
+        return newMovieStart.isAfter(start) && newMovieStart.isBefore(end);
     }
 }

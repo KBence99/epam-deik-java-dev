@@ -4,10 +4,12 @@ import com.epam.training.ticketservice.entities.UserEntity;
 import com.epam.training.ticketservice.repository.UserRepository;
 import com.epam.training.ticketservice.services.UserService;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @AllArgsConstructor
 @Component
+@NoArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private UserRepository repository;

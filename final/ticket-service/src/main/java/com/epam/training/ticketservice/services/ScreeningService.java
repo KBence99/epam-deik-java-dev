@@ -1,7 +1,6 @@
 package com.epam.training.ticketservice.services;
 
 import com.epam.training.ticketservice.dtos.ScreeningDT;
-import org.springframework.stereotype.Service;
 
 public interface ScreeningService {
 
@@ -9,5 +8,5 @@ public interface ScreeningService {
 
     public void deleteScreening(ScreeningDT screening);
 
-    public String listScreeningServices();
+    public String listScreenings();
 }

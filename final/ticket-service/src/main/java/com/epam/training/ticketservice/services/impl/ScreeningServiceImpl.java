@@ -11,6 +11,7 @@ import com.epam.training.ticketservice.services.ScreeningService;
 import com.epam.training.ticketservice.utility.DateParser;
 import com.epam.training.ticketservice.utility.ScreeningTool;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.StringJoiner;
 
 @Component
 @AllArgsConstructor
+@NoArgsConstructor
 public class ScreeningServiceImpl implements ScreeningService {
 
     private ScreeningRepository screeningRepository;
@@ -61,7 +63,7 @@ public class ScreeningServiceImpl implements ScreeningService {
     }
 
     @Override
-    public String listScreeningServices() {
+    public String listScreenings() {
         List<ScreeningEntity> screenings = screeningRepository.findAll();
 
         if (screenings.size() == 0) {

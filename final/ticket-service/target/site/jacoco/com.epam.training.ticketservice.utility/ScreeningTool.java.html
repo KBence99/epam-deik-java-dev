@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScreeningTool.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ticket-service</a> &gt; <a href="index.source.html" class="el_package">com.epam.training.ticketservice.utility</a> &gt; <span class="el_source">ScreeningTool.java</span></div><h1>ScreeningTool.java</h1><pre class="source lang-java linenums">package com.epam.training.ticketservice.utility;
+
+import com.epam.training.ticketservice.dtos.ScreeningDT;
+import com.epam.training.ticketservice.entities.MovieEntity;
+import com.epam.training.ticketservice.entities.PriceComponentEntity;
+import com.epam.training.ticketservice.entities.RoomEntity;
+import com.epam.training.ticketservice.entities.ScreeningEntity;
+import com.epam.training.ticketservice.repository.MovieRepository;
+import com.epam.training.ticketservice.repository.RoomRepository;
+import com.epam.training.ticketservice.repository.ScreeningRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
+
+@AllArgsConstructor
+@Component
+public class ScreeningTool {
+
+    private MovieRepository movieRepository;
+    private RoomRepository roomRepository;
+
+    private ScreeningRepository screeningRepository;
+
+    public ScreeningEntity getScreening(ScreeningDT screeningDT) {
+
+<span class="fc" id="L25">        MovieEntity movie = movieRepository.findByTitle(screeningDT.getMovieName());</span>
+<span class="fc" id="L26">        RoomEntity room = roomRepository.findByName(screeningDT.getRoomName());</span>
+
+<span class="fc" id="L28">        ScreeningEntity screening = screeningRepository</span>
+<span class="fc" id="L29">                .findByMovieAndRoomAndScreeningStart(movie, room, screeningDT.getScreeningStart());</span>
+
+<span class="fc" id="L31">        return screening;</span>
+    }
+
+    public Integer getScreeningPrice(ScreeningDT screeningDT) {
+
+<span class="fc" id="L36">        ScreeningEntity screening = this.getScreening(screeningDT);</span>
+
+<span class="fc" id="L38">        int price = 0;</span>
+
+<span class="fc" id="L40">        MovieEntity movie = screening.getMovie();</span>
+<span class="fc" id="L41">        RoomEntity room = screening.getRoom();</span>
+
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        for (PriceComponentEntity priceComponentEntity: screening.getPrices()) {</span>
+<span class="fc" id="L44">            price += priceComponentEntity.getPrice();</span>
+<span class="fc" id="L45">        }</span>
+
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        for (PriceComponentEntity priceComponentEntity: movie.getPrices()) {</span>
+<span class="fc" id="L48">            price += priceComponentEntity.getPrice();</span>
+<span class="fc" id="L49">        }</span>
+
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        for (PriceComponentEntity priceComponentEntity: room.getPrices()) {</span>
+<span class="fc" id="L52">            price += priceComponentEntity.getPrice();</span>
+<span class="fc" id="L53">        }</span>
+
+<span class="fc" id="L55">        return price;</span>
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

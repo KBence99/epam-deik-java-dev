@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DateParser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ticket-service</a> &gt; <a href="index.source.html" class="el_package">com.epam.training.ticketservice.utility</a> &gt; <span class="el_source">DateParser.java</span></div><h1>DateParser.java</h1><pre class="source lang-java linenums">package com.epam.training.ticketservice.utility;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+<span class="nc" id="L7">public class DateParser {</span>
+
+<span class="fc" id="L9">    private static final DateTimeFormatter format = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm&quot;);</span>
+
+    public static Boolean isClashing(String movie, String newMovie,
+                                     Integer durationInMinutes, Integer newMovieDurationInMinutes) {
+        try {
+<span class="fc" id="L14">            LocalDateTime movieStart = LocalDateTime.parse(movie,format);</span>
+<span class="fc" id="L15">            LocalDateTime movieEnd = movieStart.plusMinutes(durationInMinutes);</span>
+
+<span class="fc" id="L17">            LocalDateTime newMovieStart = LocalDateTime.parse(newMovie,format);</span>
+<span class="fc" id="L18">            LocalDateTime newMovieEnd = newMovieStart.plusMinutes(newMovieDurationInMinutes);</span>
+
+<span class="fc bfc" id="L20" title="All 2 branches covered.">            if (isBetween(movieStart, movieEnd, newMovieStart)) {</span>
+<span class="fc" id="L21">                return true;</span>
+            } else {
+<span class="fc bfc" id="L23" title="All 2 branches covered.">                if (isBetween(movieStart, movieEnd, newMovieEnd)) {</span>
+<span class="fc" id="L24">                    return true;</span>
+                } else {
+<span class="fc" id="L26">                    return false;</span>
+                }
+            }
+<span class="fc" id="L29">        } catch (DateTimeParseException e) {</span>
+<span class="fc" id="L30">            throw e;</span>
+        }
+    }
+
+    public static Boolean isInBreak(String movie, String newMovie, Integer duration, Integer newMovieDuration) {
+
+        try {
+<span class="fc" id="L37">            LocalDateTime movieStart = LocalDateTime.parse(movie, format);</span>
+<span class="fc" id="L38">            LocalDateTime breakStart = movieStart.plusMinutes(duration);</span>
+<span class="fc" id="L39">            LocalDateTime breakEnds = breakStart.plusMinutes(10);</span>
+
+<span class="fc" id="L41">            LocalDateTime newMovieStart = LocalDateTime.parse(newMovie, format);</span>
+
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            if (isBetween(breakStart, breakEnds, newMovieStart)) {</span>
+<span class="fc" id="L44">                return true;</span>
+            } else {
+<span class="fc" id="L46">                return false;</span>
+            }
+<span class="fc" id="L48">        } catch (DateTimeParseException e) {</span>
+<span class="fc" id="L49">            throw e;</span>
+        }
+    }
+
+    private static boolean isBetween(LocalDateTime start, LocalDateTime end, LocalDateTime newMovieStart) {
+<span class="fc bfc" id="L54" title="All 4 branches covered.">        return newMovieStart.isAfter(start) &amp;&amp; newMovieStart.isBefore(end);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

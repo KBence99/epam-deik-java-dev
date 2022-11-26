@@ -3,20 +3,18 @@ package com.epam.training.ticketservice.account;
 import com.epam.training.ticketservice.services.BookService;
 import com.epam.training.ticketservice.services.UserService;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Data
 @Component
+@NoArgsConstructor
+@Data
 public class UserHandler {
 
-    @Autowired
     private UserService userService;
-    @Autowired
     private BookService bookService;
 
     private AccountType type = AccountType.NOT_LOGGED_IN;
-
     private String userName = "";
 
     public static final String unauthorized = "Unauthorized for this command";
@@ -50,7 +48,7 @@ public class UserHandler {
 
     public void describe() {
         if (getType().equals(AccountType.ADMIN)) {
-            System.out.printf("Signed in with privileged account '%s'%n", userName);
+            System.out.printf("Signed in with privileged account '%s'\n", userName);
         } else if (getType().equals(AccountType.USER)) {
             System.out.println(String.format("Signed in with account '%s'", userName));
             String bookings = bookService.getBooking(userName);
@@ -69,7 +67,7 @@ public class UserHandler {
         return getType().equals(AccountType.ADMIN);
     }
 
-    public Boolean isLoggedIn() {
+    public Boolean isUser() {
         return getType().equals(AccountType.USER);
     }
 }

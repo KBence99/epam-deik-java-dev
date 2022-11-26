@@ -9,4 +9,5 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Long> {
 
     RoomEntity findByName(String name);
 
+    void deleteByName(String name);
 }

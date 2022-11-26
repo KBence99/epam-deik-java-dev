@@ -15,6 +15,7 @@ import com.epam.training.ticketservice.entities.ScreeningEntity;
 
 import com.epam.training.ticketservice.utility.ScreeningTool;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +27,7 @@ import java.util.stream.Collectors;
 @Component
 @AllArgsConstructor
 @Slf4j
+@NoArgsConstructor
 public class BookServiceImpl implements BookService {
 
     private BookRepository bookRepository;

@@ -4,6 +4,7 @@ import com.epam.training.ticketservice.entities.RoomEntity;
 import com.epam.training.ticketservice.repository.RoomRepository;
 import com.epam.training.ticketservice.services.RoomService;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import java.util.StringJoiner;
 @Component
 @Transactional
 @AllArgsConstructor
+@NoArgsConstructor
 public class RoomServiceImpl implements RoomService {
 
     private RoomRepository repository;
@@ -31,8 +33,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void deleteRoom(String name) {
-        RoomEntity entity = repository.findByName(name);
-        repository.delete(entity);
+        repository.deleteByName(name);
     }
 
     @Override

@@ -16,7 +16,7 @@ public class BookingCommands {
 
     @ShellMethod(value = "Book", key = "book")
     public void book(String movieName, String roomName, String screeningStart, String seats) {
-        if (signInHandler.isLoggedIn()) {
+        if (signInHandler.isUser()) {
             bookService.book(new ScreeningDT(movieName, roomName, screeningStart),signInHandler.getUserName(), seats);
         }
     }

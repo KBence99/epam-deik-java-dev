@@ -30,6 +30,6 @@ public class ScreeningCommands {
 
     @ShellMethod(value = "Listing rooms", key = "list screenings")
     public String listScreening() {
-        return screeningService.listScreeningServices();
+        return screeningService.listScreenings();
     }
 }

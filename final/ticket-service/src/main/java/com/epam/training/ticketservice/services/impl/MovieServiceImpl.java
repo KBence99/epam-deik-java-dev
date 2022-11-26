@@ -4,6 +4,7 @@ import com.epam.training.ticketservice.entities.MovieEntity;
 import com.epam.training.ticketservice.repository.MovieRepository;
 import com.epam.training.ticketservice.services.MovieService;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import java.util.StringJoiner;
 @Component
 @AllArgsConstructor
 @Transactional
+@NoArgsConstructor
 public class MovieServiceImpl implements MovieService {
 
     private MovieRepository repository;

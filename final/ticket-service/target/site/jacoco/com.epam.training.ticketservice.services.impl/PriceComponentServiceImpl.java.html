@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PriceComponentServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ticket-service</a> &gt; <a href="index.source.html" class="el_package">com.epam.training.ticketservice.services.impl</a> &gt; <span class="el_source">PriceComponentServiceImpl.java</span></div><h1>PriceComponentServiceImpl.java</h1><pre class="source lang-java linenums">package com.epam.training.ticketservice.services.impl;
+
+import com.epam.training.ticketservice.dtos.ScreeningDT;
+import com.epam.training.ticketservice.entities.MovieEntity;
+import com.epam.training.ticketservice.entities.PriceComponentEntity;
+import com.epam.training.ticketservice.entities.RoomEntity;
+import com.epam.training.ticketservice.entities.ScreeningEntity;
+import com.epam.training.ticketservice.repository.MovieRepository;
+import com.epam.training.ticketservice.repository.PriceComponentRepository;
+import com.epam.training.ticketservice.repository.RoomRepository;
+import com.epam.training.ticketservice.repository.ScreeningRepository;
+import com.epam.training.ticketservice.services.PriceComponentService;
+import com.epam.training.ticketservice.utility.ScreeningTool;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@AllArgsConstructor
+@Service
+@Transactional
+<span class="fc" id="L23">@Slf4j</span>
+@NoArgsConstructor
+public class PriceComponentServiceImpl implements PriceComponentService {
+
+    private PriceComponentRepository priceRepository;
+    private RoomRepository roomRepository;
+    private MovieRepository movieRepository;
+    private ScreeningTool screeningTool;
+
+    @Override
+    public void createPrice(String name, Integer value) {
+<span class="fc" id="L34">        priceRepository.save(new PriceComponentEntity(null, name, value));</span>
+<span class="fc" id="L35">    }</span>
+
+    @Override
+    public void attachToRoom(String priceName, String roomName) {
+<span class="fc" id="L39">        RoomEntity room = roomRepository.findByName(roomName);</span>
+<span class="fc" id="L40">        room.getPrices().add(priceRepository.findByName(priceName));</span>
+<span class="fc" id="L41">    }</span>
+
+    @Override
+    public void attachToMovie(String priceName, String title) {
+<span class="fc" id="L45">        MovieEntity movie = movieRepository.findByTitle(title);</span>
+<span class="fc" id="L46">        movie.getPrices().add(priceRepository.findByName(priceName));</span>
+<span class="fc" id="L47">    }</span>
+
+    @Override
+    public void attachScreening(String priceName, ScreeningDT screeningDT) {
+<span class="fc" id="L51">        ScreeningEntity screening = screeningTool.getScreening(screeningDT);</span>
+<span class="fc" id="L52">        screening.getPrices().add(priceRepository.findByName(priceName));</span>
+<span class="fc" id="L53">    }</span>
+
+    @Override
+    public void setBasePrice(Integer price) {
+<span class="fc" id="L57">        PriceComponentEntity basePrice = priceRepository.findByName(&quot;Base&quot;);</span>
+<span class="fc" id="L58">        basePrice.setPrice(price);</span>
+<span class="fc" id="L59">    }</span>
+
+    @Override
+    public String showPrice(ScreeningDT screeningDT, String seats) {
+
+<span class="fc" id="L64">        int seatsCount = seats.split(&quot; &quot;).length;</span>
+<span class="fc" id="L65">        int price = (screeningTool.getScreeningPrice(screeningDT) + priceRepository.findByName(&quot;Base&quot;).getPrice())</span>
+                * seatsCount;
+
+<span class="fc" id="L68">        return String.format(&quot;The price for this booking would be %s HUF&quot;,price);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
