@@ -4,6 +4,7 @@ import com.epam.training.ticketservice.services.BookService;
 import com.epam.training.ticketservice.services.UserService;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,7 +12,10 @@ import org.springframework.stereotype.Component;
 @Data
 public class UserHandler {
 
+    @Autowired
     private UserService userService;
+
+    @Autowired
     private BookService bookService;
 
     private AccountType type = AccountType.NOT_LOGGED_IN;

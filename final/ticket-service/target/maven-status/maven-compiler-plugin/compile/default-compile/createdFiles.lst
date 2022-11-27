@@ -9,6 +9,7 @@ com/epam/training/ticketservice/services/BookService.class
 com/epam/training/ticketservice/shellcomponent/ExitCommand.class
 com/epam/training/ticketservice/dtos/ScreeningDT.class
 com/epam/training/ticketservice/repository/PriceComponentRepository.class
+com/epam/training/ticketservice/shellcomponent/configurations/CustomPromptProvider.class
 com/epam/training/ticketservice/shellcomponent/UserCommands.class
 com/epam/training/ticketservice/entities/PriceComponentEntity.class
 com/epam/training/ticketservice/repository/MovieRepository.class
@@ -18,7 +19,6 @@ com/epam/training/ticketservice/services/impl/PriceComponentServiceImpl.class
 com/epam/training/ticketservice/account/AccountType.class
 com/epam/training/ticketservice/services/UserService.class
 com/epam/training/ticketservice/services/impl/UserServiceImpl.class
-com/epam/training/ticketservice/shellcomponent/CustomPromptProvider.class
 com/epam/training/ticketservice/services/impl/RoomServiceImpl.class
 com/epam/training/ticketservice/entities/UserEntity.class
 com/epam/training/ticketservice/shellcomponent/MovieCommands.class
@@ -37,3 +37,4 @@ com/epam/training/ticketservice/shellcomponent/RoomCommands.class
 com/epam/training/ticketservice/services/ScreeningService.class
 com/epam/training/ticketservice/account/UserHandler.class
 com/epam/training/ticketservice/dtos/Seat.class
+com/epam/training/ticketservice/shellcomponent/configurations/CustomCommandClass.class

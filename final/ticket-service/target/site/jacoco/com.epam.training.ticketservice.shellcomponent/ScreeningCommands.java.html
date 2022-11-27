@@ -3,34 +3,32 @@
 import com.epam.training.ticketservice.account.UserHandler;
 import com.epam.training.ticketservice.dtos.ScreeningDT;
 import com.epam.training.ticketservice.services.ScreeningService;
+import com.epam.training.ticketservice.shellcomponent.configurations.CustomCommandClass;
 import lombok.AllArgsConstructor;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellMethodAvailability;
 
 @ShellComponent
 @AllArgsConstructor
-public class ScreeningCommands {
-
-    private UserHandler account;
+public class ScreeningCommands extends CustomCommandClass {
     private ScreeningService screeningService;
 
     @ShellMethod(value = &quot;Creating a room&quot;, key = &quot;create screening&quot;)
+    @ShellMethodAvailability(value = &quot;isAdmin&quot;)
     public void createScreening(String movieName, String roomName, String screeningStart) {
-<span class="nc bnc" id="L19" title="All 2 branches missed.">        if (account.isAdmin()) {</span>
-<span class="nc" id="L20">            screeningService.addScreening(new ScreeningDT(movieName, roomName, screeningStart));</span>
-        }
-<span class="nc" id="L22">    }</span>
+<span class="nc" id="L20">        screeningService.addScreening(new ScreeningDT(movieName, roomName, screeningStart));</span>
+<span class="nc" id="L21">    }</span>
 
     @ShellMethod(value = &quot;Deleting a room&quot;, key = &quot;delete screening&quot;)
+    @ShellMethodAvailability(value = &quot;isAdmin&quot;)
     public void deleteScreening(String movieName, String roomName, String screeningStart) {
-<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (account.isAdmin()) {</span>
-<span class="nc" id="L27">            screeningService.deleteScreening(new ScreeningDT(movieName, roomName, screeningStart));</span>
-        }
-<span class="nc" id="L29">    }</span>
+<span class="nc" id="L26">        screeningService.deleteScreening(new ScreeningDT(movieName, roomName, screeningStart));</span>
+<span class="nc" id="L27">    }</span>
 
     @ShellMethod(value = &quot;Listing rooms&quot;, key = &quot;list screenings&quot;)
     public String listScreening() {
-<span class="nc" id="L33">        return screeningService.listScreenings();</span>
+<span class="nc" id="L31">        return screeningService.listScreenings();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

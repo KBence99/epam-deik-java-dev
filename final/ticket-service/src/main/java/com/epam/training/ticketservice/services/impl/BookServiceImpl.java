@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
 @Component
 @AllArgsConstructor
 @Slf4j
-@NoArgsConstructor
 public class BookServiceImpl implements BookService {
 
     private BookRepository bookRepository;

@@ -34,7 +34,7 @@ class BookServiceImplTest {
     private ScreeningTool screeningTool;
 
     @InjectMocks
-    private BookService bookService = new BookServiceImpl();
+    private BookService bookService = new BookServiceImpl(bookRepository,priceComponentRepository, screeningTool);
 
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 

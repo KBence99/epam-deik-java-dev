@@ -14,7 +14,6 @@ import java.util.StringJoiner;
 @Component
 @Transactional
 @AllArgsConstructor
-@NoArgsConstructor
 public class RoomServiceImpl implements RoomService {
 
     private RoomRepository repository;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="30" failures="24" name="com.training.epam.ticketservice.at.TestExecutor" time="454.769" errors="2" skipped="0">
+<testsuite tests="30" failures="0" name="com.training.epam.ticketservice.at.TestExecutor" time="308.198" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.17+8-post-Ubuntu-1ubuntu220.04"/>
@@ -61,316 +61,34 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="allow creating accounts and logging in" name="the admin account exists by default and can be logged in with the correct password" time="11.95"/>
-  <testcase classname="allow creating accounts and logging in" name="the admin account can be signed out" time="13.193"/>
-  <testcase classname="allow creating accounts and logging in" name="the admin account can not be logged in with incorrect password" time="13.47"/>
-  <testcase classname="allow creating accounts and logging in" name="non-privileged accounts can be created and logged in with the correct password" time="13.565">
-    <failure message="
-Expected: &quot;Signed in with account &apos;sanyi&apos;&quot;
-     but: was &quot;You are not signed in&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Signed in with account &apos;sanyi&apos;&quot;
-     but: was &quot;You are not signed in&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Signed in with account &apos;sanyi&apos;&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/accounts.feature:32)
-</failure>
-  </testcase>
-  <testcase classname="allow creating accounts and logging in" name="non-privileged accounts can not be logged in with the incorrect password" time="12.985">
-    <failure message="
-Expected: &quot;Login failed due to incorrect credentials&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Login failed due to incorrect credentials&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Login failed due to incorrect credentials&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/accounts.feature:39)
-</failure>
-  </testcase>
-  <testcase classname="allow creating accounts and logging in" name="non-privileged accounts can be signed out" time="12.724"/>
-  <testcase classname="allows users to book tickets for screenings, and show booking history" name="an authenticated user can book a ticket for a screening" time="30.173">
-    <error type="java.util.concurrent.TimeoutException">java.util.concurrent.TimeoutException
-	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:204)
-	at com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(SimpleTimeLimiter.java:155)
-	at com.training.epam.ticketservice.at.ProcessUnderTest.runWithTimeout(ProcessUnderTest.java:87)
-	at com.training.epam.ticketservice.at.ProcessUnderTest.readNextLine(ProcessUnderTest.java:47)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:42)
-	at ✽.the next line of the output is &quot;Seats booked: (5,5), (5,6); the price for this booking is 3000 HUF&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/bookings.feature:21)
-</error>
-  </testcase>
-  <testcase classname="allows users to book tickets for screenings, and show booking history" name="an authenticated user can not book a ticket if at least one of the seats is already taken" time="31.402">
-    <error type="java.util.concurrent.TimeoutException">java.util.concurrent.TimeoutException
-	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:204)
-	at com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(SimpleTimeLimiter.java:155)
-	at com.training.epam.ticketservice.at.ProcessUnderTest.runWithTimeout(ProcessUnderTest.java:87)
-	at com.training.epam.ticketservice.at.ProcessUnderTest.readNextLine(ProcessUnderTest.java:47)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:42)
-	at ✽.the next line of the output is &quot;Seat (5,5) is already taken&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/bookings.feature:34)
-</error>
-  </testcase>
-  <testcase classname="allows users to book tickets for screenings, and show booking history" name="the price of the ticket in the history should not change if pricing changes after the booking" time="16.888">
-    <failure message="
-Expected: &quot;Signed in with account &apos;sanyi&apos;&quot;
-     but: was &quot;You are not signed in&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Signed in with account &apos;sanyi&apos;&quot;
-     but: was &quot;You are not signed in&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Signed in with account &apos;sanyi&apos;&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/bookings.feature:49)
-</failure>
-  </testcase>
-  <testcase classname="allows creating movie descriptions" name="an admin user can create and list movies" time="13.062">
-    <failure message="
-Expected: &quot;Sátántangó (drama, 450 minutes)&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Sátántangó (drama, 450 minutes)&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Sátántangó (drama, 450 minutes)&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/movies.feature:11)
-</failure>
-  </testcase>
-  <testcase classname="allows creating movie descriptions" name="an admin user can update a movie" time="13.069">
-    <failure message="
-Expected: &quot;Sátántangó (drama, 450 minutes)&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Sátántangó (drama, 450 minutes)&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Sátántangó (drama, 450 minutes)&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/movies.feature:19)
-</failure>
-  </testcase>
-  <testcase classname="allows creating movie descriptions" name="an admin user can delete a movie" time="13.159">
-    <failure message="
-Expected: &quot;There are no movies at the moment&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;There are no movies at the moment&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;There are no movies at the moment&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/movies.feature:27)
-</failure>
-  </testcase>
-  <testcase classname="allows creating movie descriptions" name="an unauthenticated user can list movies" time="13.111">
-    <failure message="
-Expected: &quot;Sátántangó (drama, 450 minutes)&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Sátántangó (drama, 450 minutes)&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Sátántangó (drama, 450 minutes)&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/movies.feature:35)
-</failure>
-  </testcase>
-  <testcase classname="allows creating movie descriptions" name="an authenticated, non-privileged user can list movies" time="14.53">
-    <failure message="
-Expected: &quot;Sátántangó (drama, 450 minutes)&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Sátántangó (drama, 450 minutes)&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Sátántangó (drama, 450 minutes)&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/movies.feature:45)
-</failure>
-  </testcase>
-  <testcase classname="allows creating pricing components and assigning them to rooms, movies and screenings" name="a default per seat per screening price is defined to be 1500 HUF and is used in the calculation of the price of each seat" time="14.851">
-    <failure message="
-Expected: &quot;The price for this booking would be 1500 HUF&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;The price for this booking would be 1500 HUF&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;The price for this booking would be 1500 HUF&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/pricing.feature:20)
-</failure>
-  </testcase>
-  <testcase classname="allows creating pricing components and assigning them to rooms, movies and screenings" name="the admin user can change the default per seat per screening price" time="15.277">
-    <failure message="
-Expected: &quot;The price for this booking would be 1000 HUF&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;The price for this booking would be 1000 HUF&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;The price for this booking would be 1000 HUF&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/pricing.feature:27)
-</failure>
-  </testcase>
-  <testcase classname="allows creating pricing components and assigning them to rooms, movies and screenings" name="the admin user can create price component and assign it to a movie" time="16.198">
-    <failure message="
-Expected: &quot;The price for this booking would be 1600 HUF&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;The price for this booking would be 1600 HUF&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;The price for this booking would be 1600 HUF&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/pricing.feature:35)
-</failure>
-  </testcase>
-  <testcase classname="allows creating pricing components and assigning them to rooms, movies and screenings" name="the admin user can create price component and assign it to a room" time="15.811">
-    <failure message="
-Expected: &quot;The price for this booking would be 1600 HUF&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;The price for this booking would be 1600 HUF&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;The price for this booking would be 1600 HUF&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/pricing.feature:45)
-</failure>
-  </testcase>
-  <testcase classname="allows creating pricing components and assigning them to rooms, movies and screenings" name="the admin user can create price component and assign it to a screening" time="15.919">
-    <failure message="
-Expected: &quot;The price for this booking would be 1600 HUF&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;The price for this booking would be 1600 HUF&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;The price for this booking would be 1600 HUF&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/pricing.feature:55)
-</failure>
-  </testcase>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can create and list rooms" time="13.376">
-    <failure message="
-Expected: &quot;Room Pedersoli with 200 seats, 20 rows and 10 columns&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Room Pedersoli with 200 seats, 20 rows and 10 columns&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Room Pedersoli with 200 seats, 20 rows and 10 columns&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/rooms.feature:12)
-</failure>
-  </testcase>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can update a room" time="13.163">
-    <failure message="
-Expected: &quot;Room Pedersoli with 100 seats, 10 rows and 10 columns&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Room Pedersoli with 100 seats, 10 rows and 10 columns&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Room Pedersoli with 100 seats, 10 rows and 10 columns&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/rooms.feature:20)
-</failure>
-  </testcase>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can delete a room" time="13.439">
-    <failure message="
-Expected: &quot;There are no rooms at the moment&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;There are no rooms at the moment&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;There are no rooms at the moment&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/rooms.feature:28)
-</failure>
-  </testcase>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an unauthenticated user can list rooms" time="13.214">
-    <failure message="
-Expected: &quot;Room Pedersoli with 200 seats, 20 rows and 10 columns&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Room Pedersoli with 200 seats, 20 rows and 10 columns&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Room Pedersoli with 200 seats, 20 rows and 10 columns&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/rooms.feature:36)
-</failure>
-  </testcase>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an authenticated, non-privileged user can list rooms" time="13.739">
-    <failure message="
-Expected: &quot;Room Pedersoli with 200 seats, 20 rows and 10 columns&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Room Pedersoli with 200 seats, 20 rows and 10 columns&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Room Pedersoli with 200 seats, 20 rows and 10 columns&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/rooms.feature:46)
-</failure>
-  </testcase>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can create and query screenings" time="14.393">
-    <failure message="
-Expected: &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, at 2021-03-15 10:45&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, at 2021-03-15 10:45&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, at 2021-03-15 10:45&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/screenings.feature:18)
-</failure>
-  </testcase>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create overlapping screenings in the same room" time="14.492">
-    <failure message="
-Expected: &quot;There is an overlapping screening&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;There is an overlapping screening&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;There is an overlapping screening&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/screenings.feature:26)
-</failure>
-  </testcase>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create overlapping screenings in different rooms" time="13.429">
-    <failure message="
-Expected: &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, at 2021-03-15 10:45&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, at 2021-03-15 10:45&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, at 2021-03-15 10:45&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/screenings.feature:36)
-</failure>
-  </testcase>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create screenings during a 10 minute long breaks after another screening in the same room" time="14.801">
-    <failure message="
-Expected: &quot;This would start in the break period after another screening in this room&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;This would start in the break period after another screening in this room&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;This would start in the break period after another screening in this room&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/screenings.feature:44)
-</failure>
-  </testcase>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create screenings even if there is a break after a screening in a different room" time="14.622">
-    <failure message="
-Expected: &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, at 2021-03-15 11:00&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, at 2021-03-15 11:00&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, at 2021-03-15 11:00&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/screenings.feature:54)
-</failure>
-  </testcase>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can delete screenings" time="14.764">
-    <failure message="
-Expected: &quot;There are no screenings&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;There are no screenings&quot;
-     but: was &quot;&amp;#27;[31mjava.lang.NullPointerException&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:8)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;There are no screenings&quot;(file:///home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/screenings.feature:63)
-</failure>
-  </testcase>
+  <testcase classname="allow creating accounts and logging in" name="the admin account exists by default and can be logged in with the correct password" time="9.048"/>
+  <testcase classname="allow creating accounts and logging in" name="the admin account can be signed out" time="8.824"/>
+  <testcase classname="allow creating accounts and logging in" name="the admin account can not be logged in with incorrect password" time="8.707"/>
+  <testcase classname="allow creating accounts and logging in" name="non-privileged accounts can be created and logged in with the correct password" time="9.064"/>
+  <testcase classname="allow creating accounts and logging in" name="non-privileged accounts can not be logged in with the incorrect password" time="8.879"/>
+  <testcase classname="allow creating accounts and logging in" name="non-privileged accounts can be signed out" time="9.299"/>
+  <testcase classname="allows users to book tickets for screenings, and show booking history" name="an authenticated user can book a ticket for a screening" time="11.614"/>
+  <testcase classname="allows users to book tickets for screenings, and show booking history" name="an authenticated user can not book a ticket if at least one of the seats is already taken" time="12.376"/>
+  <testcase classname="allows users to book tickets for screenings, and show booking history" name="the price of the ticket in the history should not change if pricing changes after the booking" time="12.756"/>
+  <testcase classname="allows creating movie descriptions" name="an admin user can create and list movies" time="9.235"/>
+  <testcase classname="allows creating movie descriptions" name="an admin user can update a movie" time="9.349"/>
+  <testcase classname="allows creating movie descriptions" name="an admin user can delete a movie" time="9.713"/>
+  <testcase classname="allows creating movie descriptions" name="an unauthenticated user can list movies" time="8.747"/>
+  <testcase classname="allows creating movie descriptions" name="an authenticated, non-privileged user can list movies" time="9.95"/>
+  <testcase classname="allows creating pricing components and assigning them to rooms, movies and screenings" name="a default per seat per screening price is defined to be 1500 HUF and is used in the calculation of the price of each seat" time="10.746"/>
+  <testcase classname="allows creating pricing components and assigning them to rooms, movies and screenings" name="the admin user can change the default per seat per screening price" time="11.4"/>
+  <testcase classname="allows creating pricing components and assigning them to rooms, movies and screenings" name="the admin user can create price component and assign it to a movie" time="12.088"/>
+  <testcase classname="allows creating pricing components and assigning them to rooms, movies and screenings" name="the admin user can create price component and assign it to a room" time="12.243"/>
+  <testcase classname="allows creating pricing components and assigning them to rooms, movies and screenings" name="the admin user can create price component and assign it to a screening" time="12.415"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can create and list rooms" time="9.091"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can update a room" time="9.41"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can delete a room" time="9.565"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an unauthenticated user can list rooms" time="9.613"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an authenticated, non-privileged user can list rooms" time="9.363"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can create and query screenings" time="10.526"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create overlapping screenings in the same room" time="10.543"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create overlapping screenings in different rooms" time="10.695"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create screenings during a 10 minute long breaks after another screening in the same room" time="10.648"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create screenings even if there is a break after a screening in a different room" time="11.232"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can delete screenings" time="11.059"/>
 </testsuite>

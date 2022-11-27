@@ -11,7 +11,6 @@ import com.epam.training.ticketservice.services.ScreeningService;
 import com.epam.training.ticketservice.utility.DateParser;
 import com.epam.training.ticketservice.utility.ScreeningTool;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,67 +18,69 @@ import java.util.StringJoiner;
 
 @Component
 @AllArgsConstructor
-@NoArgsConstructor
 public class ScreeningServiceImpl implements ScreeningService {
 
     private ScreeningRepository screeningRepository;
+
     private MovieRepository movieRepository;
+
     private RoomRepository roomRepository;
+
     private ScreeningTool screeningTool;
 
     @Override
     public void addScreening(ScreeningDT screeningDT) {
-<span class="fc" id="L32">        ScreeningEntity entity = new ScreeningEntity();</span>
-<span class="fc" id="L33">        MovieEntity movie = movieRepository.findByTitle(screeningDT.getMovieName());</span>
-<span class="fc" id="L34">        RoomEntity room = roomRepository.findByName(screeningDT.getRoomName());</span>
+<span class="fc" id="L33">        ScreeningEntity entity = new ScreeningEntity();</span>
+<span class="fc" id="L34">        MovieEntity movie = movieRepository.findByTitle(screeningDT.getMovieName());</span>
+<span class="fc" id="L35">        RoomEntity room = roomRepository.findByName(screeningDT.getRoomName());</span>
 
-<span class="fc" id="L36">        entity.setScreeningStart(screeningDT.getScreeningStart());</span>
-<span class="fc" id="L37">        entity.setMovie(movie);</span>
-<span class="fc" id="L38">        entity.setRoom(room);</span>
+<span class="fc" id="L37">        entity.setScreeningStart(screeningDT.getScreeningStart());</span>
+<span class="fc" id="L38">        entity.setMovie(movie);</span>
+<span class="fc" id="L39">        entity.setRoom(room);</span>
 
-<span class="fc" id="L40">        List&lt;ScreeningEntity&gt; potentialCrashes = screeningRepository.findByRoom(room);</span>
+<span class="fc" id="L41">        List&lt;ScreeningEntity&gt; potentialCrashes = screeningRepository.findByRoom(room);</span>
 
-<span class="fc bfc" id="L42" title="All 2 branches covered.">        for (ScreeningEntity screening: potentialCrashes) {</span>
-<span class="fc bfc" id="L43" title="All 2 branches covered.">            if (DateParser.isClashing(screening.getScreeningStart(),</span>
-<span class="fc" id="L44">                    entity.getScreeningStart(), screening.getMovie().getLengthInMin(), movie.getLengthInMin())) {</span>
-<span class="fc" id="L45">                System.out.println(&quot;There is an overlapping screening&quot;);</span>
-<span class="fc" id="L46">                return;</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        for (ScreeningEntity screening: potentialCrashes) {</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            if (DateParser.isClashing(screening.getScreeningStart(),</span>
+<span class="fc" id="L45">                    entity.getScreeningStart(), screening.getMovie().getLengthInMin(), movie.getLengthInMin())) {</span>
+<span class="fc" id="L46">                System.out.println(&quot;There is an overlapping screening&quot;);</span>
+<span class="fc" id="L47">                return;</span>
             } else {
-<span class="fc bfc" id="L48" title="All 2 branches covered.">                if (DateParser.isInBreak(screening.getScreeningStart(),</span>
-<span class="fc" id="L49">                        entity.getScreeningStart(), screening.getMovie().getLengthInMin(), movie.getLengthInMin())) {</span>
-<span class="fc" id="L50">                    System.out.println(&quot;This would start in the break period after another screening in this room&quot;);</span>
-<span class="fc" id="L51">                    return;</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">                if (DateParser.isInBreak(screening.getScreeningStart(),</span>
+<span class="fc" id="L50">                        entity.getScreeningStart(), screening.getMovie().getLengthInMin(), movie.getLengthInMin())) {</span>
+<span class="fc" id="L51">                    System.out.println(&quot;This would start in the break period after another screening in this room&quot;);</span>
+<span class="fc" id="L52">                    return;</span>
                 }
             }
-<span class="fc" id="L54">        }</span>
+<span class="fc" id="L55">        }</span>
 
-<span class="fc" id="L56">        screeningRepository.save(entity);</span>
-<span class="fc" id="L57">    }</span>
+<span class="fc" id="L57">        screeningRepository.save(entity);</span>
+<span class="fc" id="L58">    }</span>
 
     @Override
     public void deleteScreening(ScreeningDT screeningDT) {
-<span class="fc" id="L61">        ScreeningEntity screening = screeningTool.getScreening(screeningDT);</span>
-<span class="fc" id="L62">        screeningRepository.delete(screening);</span>
-<span class="fc" id="L63">    }</span>
+<span class="fc" id="L62">        ScreeningEntity screening = screeningTool.getScreening(screeningDT);</span>
+<span class="fc" id="L63">        screeningRepository.delete(screening);</span>
+<span class="fc" id="L64">    }</span>
 
     @Override
     public String listScreenings() {
-<span class="fc" id="L67">        List&lt;ScreeningEntity&gt; screenings = screeningRepository.findAll();</span>
+<span class="fc" id="L68">        List&lt;ScreeningEntity&gt; screenings = screeningRepository.findAll();</span>
 
-<span class="fc bfc" id="L69" title="All 2 branches covered.">        if (screenings.size() == 0) {</span>
-<span class="fc" id="L70">            return &quot;There are no screenings&quot;;</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (screenings.size() == 0) {</span>
+<span class="fc" id="L71">            return &quot;There are no screenings&quot;;</span>
         }
-<span class="fc" id="L72">        StringJoiner joiner = new StringJoiner(&quot;\n&quot;);</span>
+<span class="fc" id="L73">        StringJoiner joiner = new StringJoiner(&quot;\n&quot;);</span>
 
-<span class="fc bfc" id="L74" title="All 2 branches covered.">        for (ScreeningEntity screening:screenings) {</span>
-<span class="fc" id="L75">            MovieEntity movie = screening.getMovie();</span>
-<span class="fc" id="L76">            RoomEntity room = screening.getRoom();</span>
-<span class="fc" id="L77">            joiner.add(String.format(&quot;%s (%s, %d minutes), screened in room %s, at %s&quot;,</span>
-<span class="fc" id="L78">                    movie.getTitle(), movie.getGenre(), movie.getLengthInMin(),</span>
-<span class="fc" id="L79">                    room.getName(), screening.getScreeningStart()));</span>
-<span class="fc" id="L80">        }</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        for (ScreeningEntity screening:screenings) {</span>
+<span class="fc" id="L76">            MovieEntity movie = screening.getMovie();</span>
+<span class="fc" id="L77">            RoomEntity room = screening.getRoom();</span>
+<span class="fc" id="L78">            joiner.add(String.format(&quot;%s (%s, %d minutes), screened in room %s, at %s&quot;,</span>
+<span class="fc" id="L79">                    movie.getTitle(), movie.getGenre(), movie.getLengthInMin(),</span>
+<span class="fc" id="L80">                    room.getName(), screening.getScreeningStart()));</span>
+<span class="fc" id="L81">        }</span>
 
-<span class="fc" id="L82">        return joiner.toString();</span>
+<span class="fc" id="L83">        return joiner.toString();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -17,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -40,7 +41,7 @@ class ScreeningServiceImplTest {
     private ScreeningTool screeningTool;
 
     @InjectMocks
-    ScreeningService screeningService = new ScreeningServiceImpl();
+    ScreeningService screeningService = new ScreeningServiceImpl(screeningRepository, movieRepository, roomRepository, screeningTool);
 
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 

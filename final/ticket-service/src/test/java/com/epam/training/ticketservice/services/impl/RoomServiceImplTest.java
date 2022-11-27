@@ -23,7 +23,7 @@ class RoomServiceImplTest {
     private RoomRepository repository;
 
     @InjectMocks
-    private RoomService roomService = new RoomServiceImpl();
+    private RoomService roomService = new RoomServiceImpl(repository);
 
     @Test
     void addRoom() {

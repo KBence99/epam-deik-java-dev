@@ -35,7 +35,7 @@ class PriceComponentServiceImplTest {
     private ScreeningTool screeningTool;
 
     @InjectMocks
-    private PriceComponentService priceComponentService = new PriceComponentServiceImpl();
+    private PriceComponentService priceComponentService = new PriceComponentServiceImpl(priceRepository,roomRepository,movieRepository,screeningTool);
 
     @Test
     void createPrice() {

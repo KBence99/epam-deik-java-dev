@@ -22,7 +22,7 @@ class MovieServiceImplTest {
     MovieRepository repository;
 
     @InjectMocks
-    MovieService service = new MovieServiceImpl();
+    MovieService service = new MovieServiceImpl(repository);
 
     @Test
     void addMovie() {

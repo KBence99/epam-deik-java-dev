@@ -5,22 +5,20 @@ import com.epam.training.ticketservice.repository.UserRepository;
 import com.epam.training.ticketservice.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@AllArgsConstructor
 @Component
 @NoArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    @Autowired
     private UserRepository repository;
 
     @Override
     public Boolean signIn(String username, String password) {
         UserEntity user = repository.findByUsername(username);
-        if (user.getPassword().equals(password)) {
-            return true;
-        }
-        return false;
+        return user.getPassword().equals(password);
     }
 
     @Override

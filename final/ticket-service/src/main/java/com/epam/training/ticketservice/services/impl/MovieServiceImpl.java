@@ -14,7 +14,6 @@ import java.util.StringJoiner;
 @Component
 @AllArgsConstructor
 @Transactional
-@NoArgsConstructor
 public class MovieServiceImpl implements MovieService {
 
     private MovieRepository repository;

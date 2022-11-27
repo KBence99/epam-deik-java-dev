@@ -1,10 +1,12 @@
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/RoomService.java
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/entities/ScreeningEntity.java
+/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/shellcomponent/configurations/CustomPromptProvider.java
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/shellcomponent/BookingCommands.java
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/repository/ScreeningRepository.java
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/repository/BookRepository.java
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/repository/UserRepository.java
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/impl/RoomServiceImpl.java
+/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/shellcomponent/configurations/CustomCommandClass.java
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/entities/BookEntity.java
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/BookService.java
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/ScreeningService.java
@@ -30,7 +32,6 @@
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/shellcomponent/PriceComponentCommands.java
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/impl/UserServiceImpl.java
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/services/impl/ScreeningServiceImpl.java
-/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/shellcomponent/CustomPromptProvider.java
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/account/AccountType.java
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/entities/UserEntity.java
 /home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/shellcomponent/MovieCommands.java

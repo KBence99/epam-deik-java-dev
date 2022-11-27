@@ -5,28 +5,26 @@ import com.epam.training.ticketservice.repository.UserRepository;
 import com.epam.training.ticketservice.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@AllArgsConstructor
 @Component
 @NoArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    @Autowired
     private UserRepository repository;
 
     @Override
     public Boolean signIn(String username, String password) {
-<span class="fc" id="L19">        UserEntity user = repository.findByUsername(username);</span>
-<span class="fc bfc" id="L20" title="All 2 branches covered.">        if (user.getPassword().equals(password)) {</span>
-<span class="fc" id="L21">            return true;</span>
-        }
-<span class="fc" id="L23">        return false;</span>
+<span class="fc" id="L20">        UserEntity user = repository.findByUsername(username);</span>
+<span class="fc" id="L21">        return user.getPassword().equals(password);</span>
     }
 
     @Override
     public void signUp(String username, String password) {
-<span class="fc" id="L28">        UserEntity user = new UserEntity(null,username,password);</span>
-<span class="fc" id="L29">        repository.save(user);</span>
-<span class="fc" id="L30">    }</span>
+<span class="fc" id="L26">        UserEntity user = new UserEntity(null,username,password);</span>
+<span class="fc" id="L27">        repository.save(user);</span>
+<span class="fc" id="L28">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

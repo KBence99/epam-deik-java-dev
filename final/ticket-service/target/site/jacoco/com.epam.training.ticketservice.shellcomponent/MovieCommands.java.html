@@ -3,41 +3,39 @@
 import com.epam.training.ticketservice.account.UserHandler;
 import com.epam.training.ticketservice.entities.MovieEntity;
 import com.epam.training.ticketservice.services.MovieService;
+import com.epam.training.ticketservice.shellcomponent.configurations.CustomCommandClass;
 import lombok.AllArgsConstructor;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellMethodAvailability;
 
 @AllArgsConstructor
 @ShellComponent
-public class MovieCommands {
+public class MovieCommands extends CustomCommandClass {
 
-    private UserHandler account;
     private MovieService movieService;
 
     @ShellMethod(value = &quot;Adds a movie&quot;,key = &quot;create movie&quot;)
+    @ShellMethodAvailability(value = &quot;isAdmin&quot;)
     public void addMovie(String title, String genre, Integer lengthInMin) {
-<span class="nc bnc" id="L19" title="All 2 branches missed.">        if (account.isAdmin()) {</span>
-<span class="nc" id="L20">            movieService.addMovie(new MovieEntity(null,title,genre,lengthInMin));</span>
-        }
+<span class="nc" id="L21">        movieService.addMovie(new MovieEntity(null,title,genre,lengthInMin));</span>
 <span class="nc" id="L22">    }</span>
 
     @ShellMethod(value = &quot;Updates a movie&quot;,key = &quot;update movie&quot;)
+    @ShellMethodAvailability(value = &quot;isAdmin&quot;)
     public void updateMovie(String title, String genre, Integer lengthInMin) {
-<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (account.isAdmin()) {</span>
-<span class="nc" id="L27">            movieService.updateMovie(new MovieEntity(null,title,genre,lengthInMin));</span>
-        }
-<span class="nc" id="L29">    }</span>
+<span class="nc" id="L27">        movieService.updateMovie(new MovieEntity(null,title,genre,lengthInMin));</span>
+<span class="nc" id="L28">    }</span>
 
     @ShellMethod(value = &quot;Delete a movie&quot;,key = &quot;delete movie&quot;)
+    @ShellMethodAvailability(value = &quot;isAdmin&quot;)
     public void deleteMovie(String title) {
-<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (account.isAdmin()) {</span>
-<span class="nc" id="L34">            movieService.deleteMovie(title);</span>
-        }
-<span class="nc" id="L36">    }</span>
+<span class="nc" id="L33">        movieService.deleteMovie(title);</span>
+<span class="nc" id="L34">    }</span>
 
     @ShellMethod(value = &quot;Lists all movies&quot;,key = &quot;list movies&quot;)
     public String listMovie() {
-<span class="nc" id="L40">        return movieService.listMovies();</span>
+<span class="nc" id="L38">        return movieService.listMovies();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
