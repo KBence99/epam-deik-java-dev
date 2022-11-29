@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.epam.training.ticketservice.userhandler.UserHandlerTest
--------------------------------------------------------------------------------
-Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.306 s - in com.epam.training.ticketservice.userhandler.UserHandlerTest
