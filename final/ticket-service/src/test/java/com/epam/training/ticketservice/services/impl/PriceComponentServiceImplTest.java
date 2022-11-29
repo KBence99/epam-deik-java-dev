@@ -18,9 +18,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class PriceComponentServiceImplTest {
@@ -48,10 +51,10 @@ class PriceComponentServiceImplTest {
     @Test
     void attachToRoom() {
         PriceComponentEntity price = new PriceComponentEntity(null, "cooling",1000);
-        when(priceRepository.findByName("cooling")).thenReturn(price);
+        when(priceRepository.findByName("cooling")).thenReturn(Optional.of(price));
 
         RoomEntity room = mock(RoomEntity.class);
-        when(roomRepository.findByName("Louie")).thenReturn(room);
+        when(roomRepository.findByName("Louie")).thenReturn(Optional.of(room));
 
         List<PriceComponentEntity> list = mock(ArrayList.class);
         when(room.getPrices()).thenReturn(list);
@@ -63,10 +66,10 @@ class PriceComponentServiceImplTest {
     @Test
     void attachToMovie() {
         PriceComponentEntity price = new PriceComponentEntity(null, "cooling",1000);
-        when(priceRepository.findByName("cooling")).thenReturn(price);
+        when(priceRepository.findByName("cooling")).thenReturn(Optional.of(price));
 
         MovieEntity movie  = mock(MovieEntity.class);
-        when(movieRepository.findByTitle("Spirited Away")).thenReturn(movie);
+        when(movieRepository.findByTitle("Spirited Away")).thenReturn(Optional.of(movie));
 
         List<PriceComponentEntity> list = mock(ArrayList.class);
         when(movie.getPrices()).thenReturn(list);
@@ -78,7 +81,7 @@ class PriceComponentServiceImplTest {
     @Test
     void attachScreening() {
         PriceComponentEntity price = new PriceComponentEntity(null, "cooling",1000);
-        when(priceRepository.findByName("cooling")).thenReturn(price);
+        when(priceRepository.findByName("cooling")).thenReturn(Optional.of(price));
 
         ScreeningDT dt = new ScreeningDT();
 
@@ -95,7 +98,7 @@ class PriceComponentServiceImplTest {
     @Test
     void setBasePrice() {
         PriceComponentEntity base = mock(PriceComponentEntity.class);
-        when(priceRepository.findByName("Base")).thenReturn(base);
+        when(priceRepository.findByName("Base")).thenReturn(Optional.of(base));
 
         priceComponentService.setBasePrice(1200);
         verify(base).setPrice(1200);
@@ -107,7 +110,7 @@ class PriceComponentServiceImplTest {
 
         when(screeningTool.getScreeningPrice(dt)).thenReturn(3500);
 
-        when(priceRepository.findByName("Base")).thenReturn(new PriceComponentEntity(null,"Base",1500));
+        when(priceRepository.findByName("Base")).thenReturn(Optional.of(new PriceComponentEntity(null,"Base",1500)));
 
         String actual = priceComponentService.showPrice(dt,"2,2");
         String expected = "The price for this booking would be 5000 HUF";

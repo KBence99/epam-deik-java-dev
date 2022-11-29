@@ -9,7 +9,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -17,17 +20,17 @@ import static org.mockito.Mockito.when;
 class UserServiceImplTest {
 
     @Mock
-    private UserRepository repository;
+    private UserRepository userRepository;
 
     @InjectMocks
-    private UserService service = new UserServiceImpl();
+    private UserService service = new UserServiceImpl(userRepository);
 
     @Test
     void signInSuccess() {
         String username = "caesar";
         String password = "rome";
 
-        when(repository.findByUsername("caesar")).thenReturn(new UserEntity(null,username, password));
+        when(userRepository.findByUsername("caesar")).thenReturn(Optional.of(new UserEntity(null,username, "rome")));
 
         Boolean isLoggedIn = service.signIn(username, password);
 
@@ -39,7 +42,7 @@ class UserServiceImplTest {
         String username = "caesar";
         String password = "rome";
 
-        when(repository.findByUsername("caesar")).thenReturn(new UserEntity(null,username, "carthage"));
+        when(userRepository.findByUsername("caesar")).thenReturn(Optional.of(new UserEntity(null,"caesar","carthage")));
 
         Boolean isLoggedIn = service.signIn(username, password);
 
@@ -53,6 +56,6 @@ class UserServiceImplTest {
 
         service.signUp(user.getUsername(), user.getPassword());
 
-        verify(repository).save(user);
+        verify(userRepository).save(user);
     }
 }

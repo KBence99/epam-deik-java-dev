@@ -1,15 +1,16 @@
-package com.epam.training.ticketservice.account;
+package com.epam.training.ticketservice.userhandler;
 
 import com.epam.training.ticketservice.services.BookService;
 import com.epam.training.ticketservice.services.UserService;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+@Data
 @Component
 @NoArgsConstructor
-@Data
 public class UserHandler {
 
     @Autowired

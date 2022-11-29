@@ -1,4 +1,4 @@
-package com.epam.training.ticketservice.account;
+package com.epam.training.ticketservice.userhandler;
 
 import com.epam.training.ticketservice.services.BookService;
 import com.epam.training.ticketservice.services.UserService;
@@ -12,7 +12,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

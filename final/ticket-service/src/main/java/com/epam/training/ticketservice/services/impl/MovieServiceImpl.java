@@ -4,7 +4,6 @@ import com.epam.training.ticketservice.entities.MovieEntity;
 import com.epam.training.ticketservice.repository.MovieRepository;
 import com.epam.training.ticketservice.services.MovieService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,28 +15,30 @@ import java.util.StringJoiner;
 @Transactional
 public class MovieServiceImpl implements MovieService {
 
-    private MovieRepository repository;
+    private MovieRepository movieRepository;
 
     @Override
     public void addMovie(MovieEntity entity) {
-        repository.save(entity);
+        movieRepository.save(entity);
     }
 
     @Override
     public void updateMovie(MovieEntity entity) {
-        MovieEntity movie = repository.findByTitle(entity.getTitle());
+        MovieEntity movie = movieRepository.findByTitle(entity.getTitle()).orElseThrow(() -> {
+            throw new RuntimeException("No movie by title");
+        });
         movie.setGenre(entity.getGenre());
         movie.setLengthInMin(entity.getLengthInMin());
     }
 
     @Override
     public void deleteMovie(String name) {
-        repository.deleteByTitle(name);
+        movieRepository.deleteByTitle(name);
     }
 
     @Override
     public String listMovies() {
-        List<MovieEntity> movies = repository.findAll();
+        List<MovieEntity> movies = movieRepository.findAll();
 
         if (movies.size() == 0) {
             return "There are no movies at the moment";

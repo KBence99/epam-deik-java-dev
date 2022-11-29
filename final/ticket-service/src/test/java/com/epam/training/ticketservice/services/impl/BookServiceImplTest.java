@@ -1,11 +1,15 @@
 package com.epam.training.ticketservice.services.impl;
 
 import com.epam.training.ticketservice.dtos.ScreeningDT;
-import com.epam.training.ticketservice.entities.*;
-import com.epam.training.ticketservice.repository.*;
+import com.epam.training.ticketservice.entities.BookEntity;
+import com.epam.training.ticketservice.entities.MovieEntity;
+import com.epam.training.ticketservice.entities.PriceComponentEntity;
+import com.epam.training.ticketservice.entities.RoomEntity;
+import com.epam.training.ticketservice.entities.ScreeningEntity;
+import com.epam.training.ticketservice.repository.BookRepository;
+import com.epam.training.ticketservice.repository.PriceComponentRepository;
 import com.epam.training.ticketservice.services.BookService;
 import com.epam.training.ticketservice.utility.ScreeningTool;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,8 +21,9 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -37,11 +42,6 @@ class BookServiceImplTest {
     private BookService bookService = new BookServiceImpl(bookRepository,priceComponentRepository, screeningTool);
 
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-
-    @BeforeEach
-    public void initialize(){
-
-    }
 
     @Test
     void getBookingEmpty() {
@@ -76,6 +76,8 @@ class BookServiceImplTest {
     @Test
     void successfulBook() {
 
+        System.setOut(new PrintStream(outputStreamCaptor));
+
         RoomEntity room = new RoomEntity(null, "Louie", 12,12);
         MovieEntity movie = new MovieEntity(null, "Spirited Away","animation",120);
 
@@ -90,9 +92,9 @@ class BookServiceImplTest {
 
         when(screeningTool.getScreening(screeningDT)).thenReturn(screeningEntity);
 
-        when(bookRepository.findByScreening(screeningEntity)).thenReturn(bookedList);
+        when(bookRepository.findByScreening(screeningEntity)).thenReturn(Optional.of(bookedList));
 
-        when(priceComponentRepository.findByName("Base")).thenReturn(new PriceComponentEntity(null, "Base", 1500));
+        when(priceComponentRepository.findByName("Base")).thenReturn(Optional.of(new PriceComponentEntity(null, "Base", 1500)));
 
         bookService.book(screeningDT, "caesar","2,2 1,1");
     }
@@ -116,7 +118,7 @@ class BookServiceImplTest {
 
         when(screeningTool.getScreening(screeningDT)).thenReturn(screeningEntity);
 
-        when(bookRepository.findByScreening(screeningEntity)).thenReturn(bookedList);
+        when(bookRepository.findByScreening(screeningEntity)).thenReturn(Optional.of(bookedList));
 
         bookService.book(screeningDT, "caesar","2,2 3,3");
 
@@ -145,7 +147,7 @@ class BookServiceImplTest {
 
         when(screeningTool.getScreening(screeningDT)).thenReturn(screeningEntity);
 
-        when(bookRepository.findByScreening(screeningEntity)).thenReturn(bookedList);
+        when(bookRepository.findByScreening(screeningEntity)).thenReturn(Optional.of(bookedList));
 
         bookService.book(screeningDT, "caesar","1,13 3,3");
 

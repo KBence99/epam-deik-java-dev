@@ -11,18 +11,21 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class MovieServiceImplTest {
 
     @Mock
-    MovieRepository repository;
+    MovieRepository movieRepository;
 
     @InjectMocks
-    MovieService service = new MovieServiceImpl(repository);
+    MovieService service = new MovieServiceImpl(movieRepository);
 
     @Test
     void addMovie() {
@@ -31,14 +34,14 @@ class MovieServiceImplTest {
 
         service.addMovie(movie);
 
-        verify(repository).save(movie);
+        verify(movieRepository).save(movie);
     }
 
     @Test
     void updateMovie() {
 
         MovieEntity movie = mock(MovieEntity.class);
-        when(repository.findByTitle("Spirited Away")).thenReturn(movie);
+        when(movieRepository.findByTitle("Spirited Away")).thenReturn(Optional.of(movie));
 
         service.updateMovie(new MovieEntity(null,"Spirited Away", "animation", 120));
 
@@ -51,13 +54,13 @@ class MovieServiceImplTest {
 
         service.deleteMovie("Spirited away");
 
-        verify(repository).deleteByTitle("Spirited away");
+        verify(movieRepository).deleteByTitle("Spirited away");
     }
 
     @Test
     void listMoviesEmpty() {
 
-        when(repository.findAll()).thenReturn(Collections.emptyList());
+        when(movieRepository.findAll()).thenReturn(Collections.emptyList());
 
         String expected = "There are no movies at the moment";
         String actual = service.listMovies();
@@ -68,7 +71,7 @@ class MovieServiceImplTest {
     @Test
     void listMoviesNonEmpty() {
 
-        when(repository.findAll()).thenReturn(List.of(new MovieEntity(null, "Spirited Away", "animation", 120)));
+        when(movieRepository.findAll()).thenReturn(List.of(new MovieEntity(null, "Spirited Away", "animation", 120)));
 
         String expected = "Spirited Away (animation, 120 minutes)";
         String actual = service.listMovies();

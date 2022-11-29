@@ -22,11 +22,18 @@ public class ScreeningTool {
 
     public ScreeningEntity getScreening(ScreeningDT screeningDT) {
 
-        MovieEntity movie = movieRepository.findByTitle(screeningDT.getMovieName());
-        RoomEntity room = roomRepository.findByName(screeningDT.getRoomName());
+        MovieEntity movie = movieRepository.findByTitle(screeningDT.getMovieName()).orElseThrow(() -> {
+            throw new RuntimeException("No movie by this title");
+        });;
+        RoomEntity room = roomRepository.findByName(screeningDT.getRoomName()).orElseThrow(() -> {
+            throw new RuntimeException("No room by this name found");
+        });
 
         ScreeningEntity screening = screeningRepository
-                .findByMovieAndRoomAndScreeningStart(movie, room, screeningDT.getScreeningStart());
+                .findByMovieAndRoomAndScreeningStart(movie, room, screeningDT.getScreeningStart())
+                .orElseThrow(() -> {
+                    throw new RuntimeException("No screening of these parameters found");
+                });
 
         return screening;
     }

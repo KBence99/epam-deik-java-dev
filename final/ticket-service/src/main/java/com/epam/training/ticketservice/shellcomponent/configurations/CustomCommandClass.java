@@ -1,6 +1,6 @@
 package com.epam.training.ticketservice.shellcomponent.configurations;
 
-import com.epam.training.ticketservice.account.UserHandler;
+import com.epam.training.ticketservice.userhandler.UserHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.Availability;
 import org.springframework.stereotype.Component;

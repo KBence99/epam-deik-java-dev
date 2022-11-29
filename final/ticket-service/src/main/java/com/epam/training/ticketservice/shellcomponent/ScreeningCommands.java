@@ -1,6 +1,5 @@
 package com.epam.training.ticketservice.shellcomponent;
 
-import com.epam.training.ticketservice.account.UserHandler;
 import com.epam.training.ticketservice.dtos.ScreeningDT;
 import com.epam.training.ticketservice.services.ScreeningService;
 import com.epam.training.ticketservice.shellcomponent.configurations.CustomCommandClass;

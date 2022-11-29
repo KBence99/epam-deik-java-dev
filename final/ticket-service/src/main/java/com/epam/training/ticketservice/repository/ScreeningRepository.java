@@ -7,11 +7,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ScreeningRepository extends JpaRepository<ScreeningEntity,Long> {
 
-    ScreeningEntity findByMovieAndRoomAndScreeningStart(MovieEntity movie, RoomEntity room, String screeningStart);
+    Optional<ScreeningEntity> findByMovieAndRoomAndScreeningStart(
+            MovieEntity movie, RoomEntity room, String screeningStart);
 
     List<ScreeningEntity> findByRoom(RoomEntity room);
 

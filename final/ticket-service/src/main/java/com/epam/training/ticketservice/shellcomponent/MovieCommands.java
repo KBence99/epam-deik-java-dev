@@ -1,6 +1,5 @@
 package com.epam.training.ticketservice.shellcomponent;
 
-import com.epam.training.ticketservice.account.UserHandler;
 import com.epam.training.ticketservice.entities.MovieEntity;
 import com.epam.training.ticketservice.services.MovieService;
 import com.epam.training.ticketservice.shellcomponent.configurations.CustomCommandClass;

@@ -4,7 +4,6 @@ import com.epam.training.ticketservice.entities.RoomEntity;
 import com.epam.training.ticketservice.repository.RoomRepository;
 import com.epam.training.ticketservice.services.RoomService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,43 +15,45 @@ import java.util.StringJoiner;
 @AllArgsConstructor
 public class RoomServiceImpl implements RoomService {
 
-    private RoomRepository repository;
+    private RoomRepository roomRepository;
 
     @Override
     public void addRoom(RoomEntity entity) {
-<span class="fc" id="L23">        repository.save(entity);</span>
-<span class="fc" id="L24">    }</span>
+<span class="fc" id="L22">        roomRepository.save(entity);</span>
+<span class="fc" id="L23">    }</span>
 
     @Override
     public void updateRoom(RoomEntity entity) {
-<span class="fc" id="L28">        RoomEntity room = repository.findByName(entity.getName());</span>
-<span class="fc" id="L29">        room.setChairRows(entity.getChairRows());</span>
-<span class="fc" id="L30">        room.setChairColumns(entity.getChairColumns());</span>
-<span class="fc" id="L31">    }</span>
+<span class="fc" id="L27">        RoomEntity room = roomRepository.findByName(entity.getName()).orElseThrow(() -&gt; {</span>
+<span class="nc" id="L28">            throw new RuntimeException(&quot;No room by this name found&quot;);</span>
+        });;
+<span class="fc" id="L30">        room.setChairRows(entity.getChairRows());</span>
+<span class="fc" id="L31">        room.setChairColumns(entity.getChairColumns());</span>
+<span class="fc" id="L32">    }</span>
 
     @Override
     public void deleteRoom(String name) {
-<span class="fc" id="L35">        repository.deleteByName(name);</span>
-<span class="fc" id="L36">    }</span>
+<span class="fc" id="L36">        roomRepository.deleteByName(name);</span>
+<span class="fc" id="L37">    }</span>
 
     @Override
     public String listRoom() {
 
-<span class="fc" id="L41">        List&lt;RoomEntity&gt; rooms = repository.findAll();</span>
+<span class="fc" id="L42">        List&lt;RoomEntity&gt; rooms = roomRepository.findAll();</span>
 
-<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (rooms.size() == 0) {</span>
-<span class="fc" id="L44">            return &quot;There are no rooms at the moment&quot;;</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (rooms.size() == 0) {</span>
+<span class="fc" id="L45">            return &quot;There are no rooms at the moment&quot;;</span>
         }
 
-<span class="fc" id="L47">        StringJoiner joiner = new StringJoiner(&quot;\n&quot;);</span>
+<span class="fc" id="L48">        StringJoiner joiner = new StringJoiner(&quot;\n&quot;);</span>
 
-<span class="fc bfc" id="L49" title="All 2 branches covered.">        for (RoomEntity room:rooms) {</span>
-<span class="fc" id="L50">            joiner.add(String.format(&quot;Room %s with %d seats, %d rows and %d columns&quot;,</span>
-<span class="fc" id="L51">                    room.getName(),room.getChairRows() * room.getChairColumns(),</span>
-<span class="fc" id="L52">                    room.getChairRows(), room.getChairColumns()));</span>
-<span class="fc" id="L53">        }</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        for (RoomEntity room:rooms) {</span>
+<span class="fc" id="L51">            joiner.add(String.format(&quot;Room %s with %d seats, %d rows and %d columns&quot;,</span>
+<span class="fc" id="L52">                    room.getName(),room.getChairRows() * room.getChairColumns(),</span>
+<span class="fc" id="L53">                    room.getChairRows(), room.getChairColumns()));</span>
+<span class="fc" id="L54">        }</span>
 
-<span class="fc" id="L55">        return joiner.toString();</span>
+<span class="fc" id="L56">        return joiner.toString();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

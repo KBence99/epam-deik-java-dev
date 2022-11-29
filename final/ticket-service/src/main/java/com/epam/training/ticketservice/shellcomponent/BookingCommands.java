@@ -1,9 +1,9 @@
 package com.epam.training.ticketservice.shellcomponent;
 
-import com.epam.training.ticketservice.account.UserHandler;
 import com.epam.training.ticketservice.dtos.ScreeningDT;
 import com.epam.training.ticketservice.services.BookService;
 import com.epam.training.ticketservice.shellcomponent.configurations.CustomCommandClass;
+import com.epam.training.ticketservice.userhandler.UserHandler;
 import lombok.AllArgsConstructor;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -12,7 +12,7 @@ import org.springframework.shell.standard.ShellMethod;
 @AllArgsConstructor
 public class BookingCommands extends CustomCommandClass {
 
-    UserHandler signInHandler = super.signInHandler;
+    UserHandler signInHandler;
     BookService bookService;
 
     @ShellMethod(value = "Book", key = "book")

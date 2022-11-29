@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.29">
+<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/userhandler/AccountType.java">
+</file>
+<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/userhandler/UserHandler.java">
+</file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/entities/UserEntity.java">
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/entities/RoomEntity.java">
@@ -75,10 +79,6 @@
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/dtos/Seat.java">
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/dtos/ScreeningDT.java">
-</file>
-<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/account/AccountType.java">
-</file>
-<file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/java/com/epam/training/ticketservice/account/UserHandler.java">
 </file>
 <file name="/home/caesar/Documents/suli/Java/epam-deik-java-dev/final/ticket-service/src/main/resources/application.properties">
 </file>

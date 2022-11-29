@@ -17,12 +17,12 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -49,10 +49,10 @@ class ScreeningServiceImplTest {
     void addScreeningClear() {
 
         MovieEntity movie = new MovieEntity(null, "Spirited Away", "Animation", 120);
-        when(movieRepository.findByTitle("Spirited Away")).thenReturn(movie);
+        when(movieRepository.findByTitle("Spirited Away")).thenReturn(Optional.of(movie));
 
         RoomEntity room = new RoomEntity(null, "Louie", 12, 12);
-        when(roomRepository.findByName("Louie")).thenReturn(room);
+        when(roomRepository.findByName("Louie")).thenReturn(Optional.of(room));
 
         when(screeningRepository.findByRoom(room)).thenReturn(Collections.emptyList());
 
@@ -69,9 +69,9 @@ class ScreeningServiceImplTest {
         System.setOut(new PrintStream(outputStreamCaptor));
 
         MovieEntity movie = new MovieEntity(null, "Spirited Away", "Animation", 120);
-        when(movieRepository.findByTitle("Spirited Away")).thenReturn(movie);
+        when(movieRepository.findByTitle("Spirited Away")).thenReturn(Optional.of(movie));
         RoomEntity room = new RoomEntity(null, "Louie", 12, 12);
-        when(roomRepository.findByName("Louie")).thenReturn(room);
+        when(roomRepository.findByName("Louie")).thenReturn(Optional.of(room));
         ScreeningEntity screening = new ScreeningEntity(null, movie, room, "now", Collections.emptyList());
         when(screeningRepository.findByRoom(room)).thenReturn(List.of(screening));
 
@@ -96,9 +96,9 @@ class ScreeningServiceImplTest {
         System.setOut(new PrintStream(outputStreamCaptor));
 
         MovieEntity movie = new MovieEntity(null, "Spirited Away", "Animation", 120);
-        when(movieRepository.findByTitle("Spirited Away")).thenReturn(movie);
+        when(movieRepository.findByTitle("Spirited Away")).thenReturn(Optional.of(movie));
         RoomEntity room = new RoomEntity(null, "Louie", 12, 12);
-        when(roomRepository.findByName("Louie")).thenReturn(room);
+        when(roomRepository.findByName("Louie")).thenReturn(Optional.of(room));
         ScreeningEntity screening = new ScreeningEntity(null, movie, room, "now", Collections.emptyList());
         when(screeningRepository.findByRoom(room)).thenReturn(List.of(screening));
 
@@ -125,9 +125,9 @@ class ScreeningServiceImplTest {
         System.setOut(new PrintStream(outputStreamCaptor));
 
         MovieEntity movie = new MovieEntity(null, "Spirited Away", "Animation", 120);
-        when(movieRepository.findByTitle("Spirited Away")).thenReturn(movie);
+        when(movieRepository.findByTitle("Spirited Away")).thenReturn(Optional.of(movie));
         RoomEntity room = new RoomEntity(null, "Louie", 12, 12);
-        when(roomRepository.findByName("Louie")).thenReturn(room);
+        when(roomRepository.findByName("Louie")).thenReturn(Optional.of(room));
         ScreeningEntity screening = new ScreeningEntity(null, movie, room, "now", Collections.emptyList());
         when(screeningRepository.findByRoom(room)).thenReturn(List.of(screening));
 

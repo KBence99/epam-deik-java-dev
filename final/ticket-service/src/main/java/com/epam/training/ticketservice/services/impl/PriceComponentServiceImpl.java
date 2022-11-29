@@ -8,11 +8,9 @@ import com.epam.training.ticketservice.entities.ScreeningEntity;
 import com.epam.training.ticketservice.repository.MovieRepository;
 import com.epam.training.ticketservice.repository.PriceComponentRepository;
 import com.epam.training.ticketservice.repository.RoomRepository;
-import com.epam.training.ticketservice.repository.ScreeningRepository;
 import com.epam.training.ticketservice.services.PriceComponentService;
 import com.epam.training.ticketservice.utility.ScreeningTool;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,25 +33,40 @@ public class PriceComponentServiceImpl implements PriceComponentService {
 
     @Override
     public void attachToRoom(String priceName, String roomName) {
-        RoomEntity room = roomRepository.findByName(roomName);
-        room.getPrices().add(priceRepository.findByName(priceName));
+        RoomEntity room = roomRepository.findByName(roomName).orElseThrow(() -> {
+            throw new RuntimeException("No room by this name found");
+        });
+        PriceComponentEntity priceComponent = priceRepository.findByName(priceName).orElseThrow(() -> {
+            throw new RuntimeException("No price component by this name");
+        });
+        room.getPrices().add(priceComponent);
     }
 
     @Override
     public void attachToMovie(String priceName, String title) {
-        MovieEntity movie = movieRepository.findByTitle(title);
-        movie.getPrices().add(priceRepository.findByName(priceName));
+        MovieEntity movie = movieRepository.findByTitle(title).orElseThrow(() -> {
+            throw new RuntimeException("No movie by this title");
+        });
+        PriceComponentEntity priceComponent = priceRepository.findByName(priceName).orElseThrow(() -> {
+            throw new RuntimeException("No price component by this name");
+        });
+        movie.getPrices().add(priceComponent);
     }
 
     @Override
     public void attachScreening(String priceName, ScreeningDT screeningDT) {
         ScreeningEntity screening = screeningTool.getScreening(screeningDT);
-        screening.getPrices().add(priceRepository.findByName(priceName));
+        PriceComponentEntity priceComponent = priceRepository.findByName(priceName).orElseThrow(() -> {
+            throw new RuntimeException("No price component by this name");
+        });
+        screening.getPrices().add(priceComponent);
     }
 
     @Override
     public void setBasePrice(Integer price) {
-        PriceComponentEntity basePrice = priceRepository.findByName("Base");
+        PriceComponentEntity basePrice = priceRepository.findByName("Base").orElseThrow(() -> {
+            throw new RuntimeException("No price component by this name");
+        });
         basePrice.setPrice(price);
     }
 
@@ -61,9 +74,11 @@ public class PriceComponentServiceImpl implements PriceComponentService {
     public String showPrice(ScreeningDT screeningDT, String seats) {
 
         int seatsCount = seats.split(" ").length;
-        int price = (screeningTool.getScreeningPrice(screeningDT) + priceRepository.findByName("Base").getPrice())
+        PriceComponentEntity basePriceComponent = priceRepository.findByName("Base").orElseThrow(() -> {
+            throw new RuntimeException("No price component by this name found");
+        });
+        int price = (screeningTool.getScreeningPrice(screeningDT) + basePriceComponent.getPrice())
                 * seatsCount;
-
         return String.format("The price for this booking would be %s HUF",price);
     }
 }

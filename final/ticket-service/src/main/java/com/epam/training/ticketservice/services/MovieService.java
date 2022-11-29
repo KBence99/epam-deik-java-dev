@@ -1,7 +1,6 @@
 package com.epam.training.ticketservice.services;
 
 import com.epam.training.ticketservice.entities.MovieEntity;
-import org.springframework.stereotype.Service;
 
 public interface MovieService {
 

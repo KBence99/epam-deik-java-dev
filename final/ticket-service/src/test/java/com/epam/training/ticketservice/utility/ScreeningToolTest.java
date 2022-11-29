@@ -15,10 +15,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -48,9 +48,9 @@ class ScreeningToolTest {
         room = new RoomEntity(null, "Louie", 12, 12, List.of(airCooling));
         screening = new ScreeningEntity(null,movie, room, "now", List.of(threeD));
 
-        when(movieRepository.findByTitle(movie.getTitle())).thenReturn(movie);
-        when(roomRepository.findByName(room.getName())).thenReturn(room);
-        when(screeningRepository.findByMovieAndRoomAndScreeningStart(movie, room, "now")).thenReturn(screening);
+        when(movieRepository.findByTitle(movie.getTitle())).thenReturn(Optional.of(movie));
+        when(roomRepository.findByName(room.getName())).thenReturn(Optional.of(room));
+        when(screeningRepository.findByMovieAndRoomAndScreeningStart(movie, room, "now")).thenReturn(Optional.of(screening));
     }
 
     @Test

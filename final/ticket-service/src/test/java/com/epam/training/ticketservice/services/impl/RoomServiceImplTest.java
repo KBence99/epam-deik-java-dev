@@ -12,18 +12,21 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class RoomServiceImplTest {
 
     @Mock
-    private RoomRepository repository;
+    private RoomRepository roomRepository;
 
     @InjectMocks
-    private RoomService roomService = new RoomServiceImpl(repository);
+    private RoomService roomService = new RoomServiceImpl(roomRepository);
 
     @Test
     void addRoom() {
@@ -32,7 +35,7 @@ class RoomServiceImplTest {
 
         roomService.addRoom(room);
 
-        verify(repository).save(room);
+        verify(roomRepository).save(room);
 
     }
 
@@ -40,7 +43,7 @@ class RoomServiceImplTest {
     void updateRoom() {
 
         RoomEntity oldRoom = mock(RoomEntity.class);
-        when(repository.findByName("Louie")).thenReturn(oldRoom);
+        when(roomRepository.findByName("Louie")).thenReturn(Optional.of(oldRoom));
 
         RoomEntity room = new RoomEntity(null, "Louie", 12, 12);
 
@@ -55,14 +58,14 @@ class RoomServiceImplTest {
 
         roomService.deleteRoom("Louie");
 
-        verify(repository).deleteByName("Louie");
+        verify(roomRepository).deleteByName("Louie");
 
     }
 
     @Test
     void listRoomEmpty() {
 
-        when(repository.findAll()).thenReturn(Collections.emptyList());
+        when(roomRepository.findAll()).thenReturn(Collections.emptyList());
 
         String expected = "There are no rooms at the moment";
         String actual = roomService.listRoom();
@@ -75,7 +78,7 @@ class RoomServiceImplTest {
 
         List<RoomEntity> roomList = new ArrayList<>(List.of(new RoomEntity(null, "Louie", 12, 12)));
 
-        when(repository.findAll()).thenReturn(roomList);
+        when(roomRepository.findAll()).thenReturn(roomList);
 
         String expected = "Room Louie with 144 seats, 12 rows and 12 columns";
         String actual = roomService.listRoom();

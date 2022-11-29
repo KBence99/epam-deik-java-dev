@@ -31,8 +31,12 @@ public class ScreeningServiceImpl implements ScreeningService {
     @Override
     public void addScreening(ScreeningDT screeningDT) {
         ScreeningEntity entity = new ScreeningEntity();
-        MovieEntity movie = movieRepository.findByTitle(screeningDT.getMovieName());
-        RoomEntity room = roomRepository.findByName(screeningDT.getRoomName());
+        MovieEntity movie = movieRepository.findByTitle(screeningDT.getMovieName()).orElseThrow(() -> {
+            throw new RuntimeException("No movie by this title");
+        });
+        RoomEntity room = roomRepository.findByName(screeningDT.getRoomName()).orElseThrow(() -> {
+            throw new RuntimeException("No room by this name found");
+        });;
 
         entity.setScreeningStart(screeningDT.getScreeningStart());
         entity.setMovie(movie);

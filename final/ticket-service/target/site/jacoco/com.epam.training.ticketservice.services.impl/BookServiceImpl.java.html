@@ -2,20 +2,16 @@
 
 import com.epam.training.ticketservice.dtos.ScreeningDT;
 import com.epam.training.ticketservice.dtos.Seat;
-import com.epam.training.ticketservice.repository.BookRepository;
-import com.epam.training.ticketservice.repository.RoomRepository;
-import com.epam.training.ticketservice.repository.PriceComponentRepository;
-
-import com.epam.training.ticketservice.services.BookService;
-
-import com.epam.training.ticketservice.entities.RoomEntity;
-import com.epam.training.ticketservice.entities.MovieEntity;
 import com.epam.training.ticketservice.entities.BookEntity;
+import com.epam.training.ticketservice.entities.MovieEntity;
+import com.epam.training.ticketservice.entities.PriceComponentEntity;
+import com.epam.training.ticketservice.entities.RoomEntity;
 import com.epam.training.ticketservice.entities.ScreeningEntity;
-
+import com.epam.training.ticketservice.repository.BookRepository;
+import com.epam.training.ticketservice.repository.PriceComponentRepository;
+import com.epam.training.ticketservice.services.BookService;
 import com.epam.training.ticketservice.utility.ScreeningTool;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +22,7 @@ import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
-<span class="fc" id="L29">@Slf4j</span>
+<span class="fc" id="L25">@Slf4j</span>
 public class BookServiceImpl implements BookService {
 
     private BookRepository bookRepository;
@@ -36,16 +32,20 @@ public class BookServiceImpl implements BookService {
     @Override
     public void book(ScreeningDT screeningDT, String username, String seats) {
 
-<span class="fc" id="L39">        List&lt;Seat&gt; seatList = Arrays</span>
-<span class="fc" id="L40">                .stream(seats.split(&quot; &quot;)).map(Seat::new).collect(Collectors.toList());</span>
+<span class="fc" id="L35">        List&lt;Seat&gt; seatList = Arrays</span>
+<span class="fc" id="L36">                .stream(seats.split(&quot; &quot;)).map(Seat::new).collect(Collectors.toList());</span>
 
-<span class="fc" id="L42">        ScreeningEntity screening = screeningTool.getScreening(screeningDT);</span>
+<span class="fc" id="L38">        ScreeningEntity screening = screeningTool.getScreening(screeningDT);</span>
 
-<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (isSeatTaken(seatList, screening)) {</span>
-<span class="fc" id="L45">            return;</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (isSeatTaken(seatList, screening)) {</span>
+<span class="fc" id="L41">            return;</span>
         }
 
-<span class="fc" id="L48">        int basePrice = priceComponentRepository.findByName(&quot;Base&quot;).getPrice();</span>
+<span class="fc" id="L44">        PriceComponentEntity basePriceComponent = priceComponentRepository.findByName(&quot;Base&quot;).orElseThrow(() -&gt; {</span>
+<span class="nc" id="L45">            throw new RuntimeException(&quot;No price component by this name found&quot;);</span>
+        });
+
+<span class="fc" id="L48">        int basePrice = basePriceComponent.getPrice();</span>
 <span class="fc" id="L49">        int seatsCount = seats.split(&quot; &quot;).length;</span>
 
 <span class="fc" id="L51">        BookEntity book = new BookEntity(null,screening,username,seats);</span>
@@ -96,23 +96,25 @@ public class BookServiceImpl implements BookService {
 <span class="fc" id="L96">        RoomEntity room = screening.getRoom();</span>
 
 <span class="fc" id="L98">        List&lt;BookEntity&gt; books = bookRepository</span>
-<span class="fc" id="L99">                .findByScreening(screening);</span>
-<span class="fc" id="L100">        List&lt;Seat&gt; taken = books.stream()</span>
-<span class="fc" id="L101">                .map(book -&gt; new Seat(book.getSeats()))</span>
-<span class="fc" id="L102">                .collect(Collectors.toList());</span>
-<span class="fc bfc" id="L103" title="All 2 branches covered.">        for (Seat seat: seatList) {</span>
-<span class="fc bfc" id="L104" title="All 4 branches covered.">            if (room.getChairColumns() &lt; seat.getColumn() || room.getChairRows() &lt; seat.getRow()) {</span>
-<span class="fc" id="L105">                System.out.println(&quot;Nonexistent seat&quot;);</span>
-<span class="fc" id="L106">                return true;</span>
+<span class="fc" id="L99">                .findByScreening(screening).orElseThrow(() -&gt;</span>
+<span class="nc" id="L100">                    new RuntimeException(&quot;No matching booking found&quot;)</span>
+                );
+<span class="fc" id="L102">        List&lt;Seat&gt; taken = books.stream()</span>
+<span class="fc" id="L103">                .map(book -&gt; new Seat(book.getSeats()))</span>
+<span class="fc" id="L104">                .collect(Collectors.toList());</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        for (Seat seat: seatList) {</span>
+<span class="fc bfc" id="L106" title="All 4 branches covered.">            if (room.getChairColumns() &lt; seat.getColumn() || room.getChairRows() &lt; seat.getRow()) {</span>
+<span class="fc" id="L107">                System.out.println(&quot;Nonexistent seat&quot;);</span>
+<span class="fc" id="L108">                return true;</span>
             }
-<span class="fc bfc" id="L108" title="All 2 branches covered.">            for (Seat takenSeat: taken) {</span>
-<span class="fc bfc" id="L109" title="All 2 branches covered.">                if (seat.equals(takenSeat)) {</span>
-<span class="fc" id="L110">                    System.out.printf(&quot;Seat %s is already taken\n&quot;,formatSeats(takenSeat.toString()));</span>
-<span class="fc" id="L111">                    return true;</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">            for (Seat takenSeat: taken) {</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">                if (seat.equals(takenSeat)) {</span>
+<span class="fc" id="L112">                    System.out.printf(&quot;Seat %s is already taken\n&quot;,formatSeats(takenSeat.toString()));</span>
+<span class="fc" id="L113">                    return true;</span>
                 }
-<span class="fc" id="L113">            }</span>
-<span class="fc" id="L114">        }</span>
-<span class="fc" id="L115">        return false;</span>
+<span class="fc" id="L115">            }</span>
+<span class="fc" id="L116">        }</span>
+<span class="fc" id="L117">        return false;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

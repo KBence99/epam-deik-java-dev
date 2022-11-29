@@ -2,20 +2,16 @@ package com.epam.training.ticketservice.services.impl;
 
 import com.epam.training.ticketservice.dtos.ScreeningDT;
 import com.epam.training.ticketservice.dtos.Seat;
-import com.epam.training.ticketservice.repository.BookRepository;
-import com.epam.training.ticketservice.repository.RoomRepository;
-import com.epam.training.ticketservice.repository.PriceComponentRepository;
-
-import com.epam.training.ticketservice.services.BookService;
-
-import com.epam.training.ticketservice.entities.RoomEntity;
-import com.epam.training.ticketservice.entities.MovieEntity;
 import com.epam.training.ticketservice.entities.BookEntity;
+import com.epam.training.ticketservice.entities.MovieEntity;
+import com.epam.training.ticketservice.entities.PriceComponentEntity;
+import com.epam.training.ticketservice.entities.RoomEntity;
 import com.epam.training.ticketservice.entities.ScreeningEntity;
-
+import com.epam.training.ticketservice.repository.BookRepository;
+import com.epam.training.ticketservice.repository.PriceComponentRepository;
+import com.epam.training.ticketservice.services.BookService;
 import com.epam.training.ticketservice.utility.ScreeningTool;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -45,7 +41,11 @@ public class BookServiceImpl implements BookService {
             return;
         }
 
-        int basePrice = priceComponentRepository.findByName("Base").getPrice();
+        PriceComponentEntity basePriceComponent = priceComponentRepository.findByName("Base").orElseThrow(() -> {
+            throw new RuntimeException("No price component by this name found");
+        });
+
+        int basePrice = basePriceComponent.getPrice();
         int seatsCount = seats.split(" ").length;
 
         BookEntity book = new BookEntity(null,screening,username,seats);
@@ -96,7 +96,9 @@ public class BookServiceImpl implements BookService {
         RoomEntity room = screening.getRoom();
 
         List<BookEntity> books = bookRepository
-                .findByScreening(screening);
+                .findByScreening(screening).orElseThrow(() ->
+                    new RuntimeException("No matching booking found")
+                );
         List<Seat> taken = books.stream()
                 .map(book -> new Seat(book.getSeats()))
                 .collect(Collectors.toList());

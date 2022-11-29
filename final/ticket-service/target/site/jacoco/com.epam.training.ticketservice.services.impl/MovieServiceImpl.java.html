@@ -4,7 +4,6 @@ import com.epam.training.ticketservice.entities.MovieEntity;
 import com.epam.training.ticketservice.repository.MovieRepository;
 import com.epam.training.ticketservice.services.MovieService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,41 +15,43 @@ import java.util.StringJoiner;
 @Transactional
 public class MovieServiceImpl implements MovieService {
 
-    private MovieRepository repository;
+    private MovieRepository movieRepository;
 
     @Override
     public void addMovie(MovieEntity entity) {
-<span class="fc" id="L23">        repository.save(entity);</span>
-<span class="fc" id="L24">    }</span>
+<span class="fc" id="L22">        movieRepository.save(entity);</span>
+<span class="fc" id="L23">    }</span>
 
     @Override
     public void updateMovie(MovieEntity entity) {
-<span class="fc" id="L28">        MovieEntity movie = repository.findByTitle(entity.getTitle());</span>
-<span class="fc" id="L29">        movie.setGenre(entity.getGenre());</span>
-<span class="fc" id="L30">        movie.setLengthInMin(entity.getLengthInMin());</span>
-<span class="fc" id="L31">    }</span>
+<span class="fc" id="L27">        MovieEntity movie = movieRepository.findByTitle(entity.getTitle()).orElseThrow(() -&gt; {</span>
+<span class="nc" id="L28">            throw new RuntimeException(&quot;No movie by title&quot;);</span>
+        });
+<span class="fc" id="L30">        movie.setGenre(entity.getGenre());</span>
+<span class="fc" id="L31">        movie.setLengthInMin(entity.getLengthInMin());</span>
+<span class="fc" id="L32">    }</span>
 
     @Override
     public void deleteMovie(String name) {
-<span class="fc" id="L35">        repository.deleteByTitle(name);</span>
-<span class="fc" id="L36">    }</span>
+<span class="fc" id="L36">        movieRepository.deleteByTitle(name);</span>
+<span class="fc" id="L37">    }</span>
 
     @Override
     public String listMovies() {
-<span class="fc" id="L40">        List&lt;MovieEntity&gt; movies = repository.findAll();</span>
+<span class="fc" id="L41">        List&lt;MovieEntity&gt; movies = movieRepository.findAll();</span>
 
-<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (movies.size() == 0) {</span>
-<span class="fc" id="L43">            return &quot;There are no movies at the moment&quot;;</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (movies.size() == 0) {</span>
+<span class="fc" id="L44">            return &quot;There are no movies at the moment&quot;;</span>
         }
 
-<span class="fc" id="L46">        StringJoiner joiner = new StringJoiner(&quot;\n&quot;);</span>
+<span class="fc" id="L47">        StringJoiner joiner = new StringJoiner(&quot;\n&quot;);</span>
 
-<span class="fc bfc" id="L48" title="All 2 branches covered.">        for (MovieEntity movie:movies) {</span>
-<span class="fc" id="L49">            joiner.add(String.format(&quot;%s (%s, %d minutes)&quot;,</span>
-<span class="fc" id="L50">                    movie.getTitle(), movie.getGenre(), movie.getLengthInMin()));</span>
-<span class="fc" id="L51">        }</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        for (MovieEntity movie:movies) {</span>
+<span class="fc" id="L50">            joiner.add(String.format(&quot;%s (%s, %d minutes)&quot;,</span>
+<span class="fc" id="L51">                    movie.getTitle(), movie.getGenre(), movie.getLengthInMin()));</span>
+<span class="fc" id="L52">        }</span>
 
-<span class="fc" id="L53">        return joiner.toString();</span>
+<span class="fc" id="L54">        return joiner.toString();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
