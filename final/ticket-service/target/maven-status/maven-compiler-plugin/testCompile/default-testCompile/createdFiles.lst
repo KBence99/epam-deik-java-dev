@@ -1,0 +1,9 @@
+com/epam/training/ticketservice/services/impl/BookServiceImplTest.class
+com/epam/training/ticketservice/utility/DateParserTest.class
+com/epam/training/ticketservice/services/impl/UserServiceImplTest.class
+com/epam/training/ticketservice/utility/ScreeningToolTest.class
+com/epam/training/ticketservice/services/impl/MovieServiceImplTest.class
+com/epam/training/ticketservice/services/impl/ScreeningServiceImplTest.class
+com/epam/training/ticketservice/services/impl/RoomServiceImplTest.class
+com/epam/training/ticketservice/services/impl/PriceComponentServiceImplTest.class
+com/epam/training/ticketservice/userhandler/UserHandlerTest.class

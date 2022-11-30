@@ -33,7 +33,7 @@ public class UserCommands {
     }
 
     @ShellMethod(value = "Description of account", key = "describe account")
-    public void describe() {
-        handler.describe();
+    public String describe() {
+        return handler.describe();
     }
 }

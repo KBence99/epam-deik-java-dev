@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RoomCommands.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ticket-service</a> &gt; <a href="index.source.html" class="el_package">com.epam.training.ticketservice.shellcomponent</a> &gt; <span class="el_source">RoomCommands.java</span></div><h1>RoomCommands.java</h1><pre class="source lang-java linenums">package com.epam.training.ticketservice.shellcomponent;
+
+import com.epam.training.ticketservice.entities.RoomEntity;
+import com.epam.training.ticketservice.services.RoomService;
+import com.epam.training.ticketservice.shellcomponent.configurations.CustomCommandClass;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.shell.standard.ShellComponent;
+import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellMethodAvailability;
+
+@ShellComponent
+<span class="nc" id="L13">@Slf4j</span>
+@AllArgsConstructor
+public class RoomCommands extends CustomCommandClass {
+    private RoomService roomService;
+
+    @ShellMethod(value = &quot;Creating a room&quot;, key = &quot;create room&quot;)
+    @ShellMethodAvailability(value = &quot;isAdmin&quot;)
+    public void createRoom(String roomName, Integer chairRows, Integer chairColumns) {
+<span class="nc" id="L21">        roomService.addRoom(new RoomEntity(null,roomName, chairRows, chairColumns));</span>
+<span class="nc" id="L22">    }</span>
+
+    @ShellMethod(value = &quot;Updating a room&quot;, key = &quot;update room&quot;)
+    @ShellMethodAvailability(value = &quot;isAdmin&quot;)
+    public void updateRoom(String roomName, Integer chairRows, Integer chairColumns) {
+<span class="nc" id="L27">        roomService.updateRoom(new RoomEntity(null,roomName,chairRows,chairColumns));</span>
+<span class="nc" id="L28">    }</span>
+
+    @ShellMethod(value = &quot;Deleting a room&quot;, key = &quot;delete room&quot;)
+    @ShellMethodAvailability(value = &quot;isAdmin&quot;)
+    public void deleteRoom(String roomName) {
+<span class="nc" id="L33">        roomService.deleteRoom(roomName);</span>
+<span class="nc" id="L34">    }</span>
+
+    @ShellMethod(value = &quot;Listing rooms&quot;, key = &quot;list rooms&quot;)
+    public String listRoom() {
+<span class="nc" id="L38">        return roomService.listRoom();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

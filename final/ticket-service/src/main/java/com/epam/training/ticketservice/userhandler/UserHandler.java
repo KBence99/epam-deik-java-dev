@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.StringJoiner;
+
 @Data
 @Component
 @NoArgsConstructor
@@ -51,21 +53,23 @@ public class UserHandler {
         setType(AccountType.NOT_LOGGED_IN);
     }
 
-    public void describe() {
+    public String describe() {
+        StringJoiner describe = new StringJoiner("\n");
         if (getType().equals(AccountType.ADMIN)) {
-            System.out.printf("Signed in with privileged account '%s'\n", userName);
+            describe.add(String.format("Signed in with privileged account '%s'",userName));
         } else if (getType().equals(AccountType.USER)) {
-            System.out.println(String.format("Signed in with account '%s'", userName));
+            describe.add(String.format("Signed in with account '%s'", userName));
             String bookings = bookService.getBooking(userName);
             if (bookings.equals("")) {
-                System.out.println("You have not booked any tickets yet");
+                describe.add("You have not booked any tickets yet");
             } else {
-                System.out.println("Your previous bookings are");
-                System.out.println(bookings);
+                describe.add("Your previous bookings are");
+                describe.add(bookings);
             }
         } else {
-            System.out.println("You are not signed in");
+            describe.add("You are not signed in");
         }
+        return describe.toString();
     }
 
     public Boolean isAdmin() {

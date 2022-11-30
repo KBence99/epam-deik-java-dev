@@ -103,13 +103,10 @@ class UserHandlerTest {
     @Test
     void describeAdminTest(){
 
-        System.setOut(new PrintStream(outputStreamCaptor));
-
         handler.logInAdmin("admin","admin");
-        handler.describe();
 
         String expected = "Signed in with privileged account 'admin'";
-        String actual = outputStreamCaptor.toString().trim();
+        String actual = handler.describe();
 
         assertEquals(expected, actual);
     }
@@ -123,11 +120,10 @@ class UserHandlerTest {
         when(bookService.getBooking(username)).thenReturn("");
 
         handler.logInUser(username,password);
-        handler.describe();
 
         String expected = "Signed in with account 'caesar'\n" +
                 "You have not booked any tickets yet";
-        String actual = outputStreamCaptor.toString().trim();
+        String actual = handler.describe();
 
         assertEquals(expected, actual);
     }
@@ -137,10 +133,8 @@ class UserHandlerTest {
 
         System.setOut(new PrintStream(outputStreamCaptor));
 
-        handler.describe();
-
         String expected = "You are not signed in";
-        String actual = outputStreamCaptor.toString().trim();
+        String actual = handler.describe();
 
         assertEquals(expected, actual);
     }
@@ -156,11 +150,10 @@ class UserHandlerTest {
         when(bookService.getBooking(username)).thenReturn(booking);
 
         handler.logInUser(username,password);
-        handler.describe();
 
         String expected = "Signed in with account 'caesar'\n" +
                 "Your previous bookings are\n" + booking;
-        String actual = outputStreamCaptor.toString().trim();
+        String actual = handler.describe();
 
         assertEquals(expected, actual);
     }
